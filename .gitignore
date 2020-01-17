@@ -1,3 +1,5 @@
+*.sh
+*.proto
 *.pyc
 *.pyo
 LICENSE
@@ -43,3 +45,4 @@ Simulations/
 *.xml
 makemakefiles
 M3WSN/M3WSN
+protobuf-3/
