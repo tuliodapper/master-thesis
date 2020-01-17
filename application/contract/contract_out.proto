@@ -1,0 +1,57 @@
+syntax = "proto2";
+
+package contract_out;
+
+message ContractOut {
+
+	enum Action {
+		ADD = 1;
+		DELETE = 2;
+		UPDATE = 3;
+	}
+
+	enum Event {
+		FORCED = 1;
+		REQUIRED = 2;
+	}
+
+	message Route {
+		optional int32 destination = 1;
+		optional int32 nextHop = 2;
+		optional bool drop = 3;
+	}
+
+	message Location {
+		optional string x = 1;
+		optional string y = 2;
+	}
+
+	message Area {
+		optional Location center = 1;
+		optional string radius = 2;
+	}
+
+	message UpdateUser {
+ 		optional int32 relayId = 1;
+		optional int32 userId = 2;
+		optional Action action = 3;
+		optional Event event = 4;
+	}
+
+	message UpdateRoutingTable {
+ 		optional int32 relayId = 1;
+	 	optional Route route = 2;
+		optional Action action = 3;
+	}
+
+	message UpdateArea {
+ 		optional int32 relayId = 1;
+		optional Area area = 2;
+	}
+	
+	required bool isACK = 1;
+	repeated UpdateUser updateUser = 2;
+	repeated UpdateRoutingTable updateRoutingTable = 3;
+	repeated UpdateArea updateArea = 4;
+
+}

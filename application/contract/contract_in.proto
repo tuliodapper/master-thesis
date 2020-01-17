@@ -1,0 +1,72 @@
+syntax = "proto2";
+
+package contract_in;
+
+message ContractIn {
+
+	enum ContractInPacket {
+		UNREGISTER_USER = 1;
+		NOTIFY_STATUS_RELAY = 2;
+		REGISTER_RELAY = 3;
+		NOTIFY_STATUS_USER = 4;
+		REGISTER_USER = 5;
+		REFRESH_REGISTER_USER = 6;
+		NOTIFY_STATUS_CONTROLLER = 7;
+		PACKET_IN = 8;
+		REQUEST = 9;
+	}
+
+	enum Event {
+		FORCED = 1;
+		REQUIRED = 2;
+	}
+
+	message Load {
+		optional string waitTimePacketQueue = 1;
+		optional int32 userNumber = 2;
+		optional int32 dropNumber = 3;
+	}
+
+	message Location {
+		optional string x = 1;
+		optional string y = 2;
+	}
+
+	message Status {
+		optional Location location = 1;
+	}
+
+	message NotifyStatusController {
+		optional Status status = 1;
+	}
+
+	message NotifyStatusUser {
+		optional Status status = 1;
+	}
+
+	message NotifyStatusRelay {
+		optional Status status = 1;
+	}
+
+	message Unregister {
+		optional Event event = 1;
+	}
+
+	message Register {
+		optional Status status = 1;
+		optional Load load = 2;
+	}
+	
+ 	optional string time = 1;
+ 	optional int32 	userId = 2;
+ 	optional int32 	relayId = 3;
+
+	required ContractInPacket contractInPacket = 4;
+
+	optional NotifyStatusController msgNotifyStatusController = 5;
+	optional NotifyStatusUser msgNotifyStatusUser = 6;
+	optional NotifyStatusRelay msgNotifyStatusRelay = 7;
+	optional Unregister msgUnregister = 8;
+	optional Register msgRegister = 9;
+
+}
