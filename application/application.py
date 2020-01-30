@@ -208,23 +208,25 @@ class Application(object):
 			# 		transmissionsNodesRU[index] = len(self.transmissions[relayId]["transmissions"])
 			# print("transmissionsNodesRU -> " + str(transmissionsNodesRU))
 
-			routes_target = []
-			self.routing.initialize()
+			if (self.config["manageRouting"] == "true"):
 
-			for transmission in self.transmissions:
-				routes 	= self.routing.computeRoutes(transmission["source"], transmission["destination"])
-				n = len(routes)
-				for i in range(1, n):
-					routes_target.append(routes[i])
-					self.routing.addTransmission(routes[i]["nodeId"])
+				routes_target = []
+				self.routing.initialize()
 
-			# routes = routing.computeRouting(self.config["nameCN"], 	self.config["posCN"],
-			# 								self.config["namesUN"], self.config["posUN"],
-			# 								self.config["namesRN"], self.config["posRN"],
-			# 								self.config["dcm"], transmissionsNodesRU)
-			# self.routes_target = routing.processRoute(routes)
+				for transmission in self.transmissions:
+					routes 	= self.routing.computeRoutes(transmission["source"], transmission["destination"])
+					n = len(routes)
+					for i in range(1, n):
+						routes_target.append(routes[i])
+						self.routing.addTransmission(routes[i]["nodeId"])
 
-			self.processUpdateRoutingTable(contractOut.updateRoutingTable, routes_target)
+				# routes = routing.computeRouting(self.config["nameCN"], 	self.config["posCN"],
+				# 								self.config["namesUN"], self.config["posUN"],
+				# 								self.config["namesRN"], self.config["posRN"],
+				# 								self.config["dcm"], transmissionsNodesRU)
+				# self.routes_target = routing.processRoute(routes)
+
+				self.processUpdateRoutingTable(contractOut.updateRoutingTable, routes_target)
 
 					# new = contractOut.updateRoutingTable.add()
 					# new.relayId = 3
