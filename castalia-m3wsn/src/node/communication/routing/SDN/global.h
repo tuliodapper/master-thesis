@@ -67,5 +67,6 @@ std::string getOutputTelemetry(SDNRoutingPacket * netPacket);
 std::string getTraceTelemetry(SDNRoutingPacket * netPacket);
 std::string getOutputTelemetry(int lenQueueMac, int lenQueueNet, int packetDropMac, int packetDropNet);
 std::string getTraceTelemetry(int lenQueueMac, int lenQueueNet, int packetDropMac, int packetDropNet);
+double getRandomDelay();
 
 #endif

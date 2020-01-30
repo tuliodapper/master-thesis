@@ -1,9 +1,14 @@
 #include "global.h"
 
+double getRandomDelay(){
+    int tmp = rand()%100;
+    double tmpTime = tmp / 100.0;
+    return 0.15 + tmpTime;
+}
+
 bool sort_sentPacket(sentPacket_s a, sentPacket_s b){
 	return (a.remainingTime < b.remainingTime);
 }
-
 
 std::string getSDNRoutingPacketKindName(int SDNRoutingPacketKind)
 {
@@ -30,6 +35,7 @@ std::string getSDNRoutingPacketKindName(int SDNRoutingPacketKind)
         case SDN_ACK:                   { kind = "SDN_ACK"; break; }
         case SDN_DATA:                  { kind = "SDN_DATA"; break; }
         case SDN_TELEMETRY:             { kind = "SDN_TELEMETRY"; break; }
+        case SDN_BEACON:                { kind = "SDN_BEACON"; break; }
     }
 
     return kind;

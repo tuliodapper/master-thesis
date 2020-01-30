@@ -37,6 +37,7 @@ enum SDNRouting_FrameType{
 	SDN_ACK						= 0022;
 	SDN_DATA					= 0023;
 	SDN_TELEMETRY 				= 0024;
+	SDN_BEACON					= 0025;
 };
 
 enum SDNEvent{
@@ -76,6 +77,10 @@ struct load_s {
 	int 		userNumber;
 	int 		dropNumber;
 };
+
+struct SDNBeacon {
+	status_s status;
+}
 
 struct SDNUserStatus {
 	status_s status;
@@ -151,6 +156,8 @@ struct SDNTelemetry {
 packet SDNRoutingPacket extends RoutingPacket{
 
 	int SDNRoutingPacketKind enum (SDNRouting_FrameType);
+
+	SDNBeacon msgBeacon;
 
 	SDNUserStatus msgUserStatus;
 
