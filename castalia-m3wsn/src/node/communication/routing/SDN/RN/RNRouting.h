@@ -87,6 +87,7 @@ protected:
 	void addRoute(route_s route);
 	double isOutOfRange(double distance);
 	double getDistance(location_s location1, location_s location2);
+	bool hasAlreadySentPacketIn(SDNRoutingPacket * netPacket);
 
 	location_s getCurrentLocation();
 	double getResidualEnergy();

@@ -37,7 +37,7 @@ void RNRouting::startup() {
 	// IGNORED AS THERE IS NO NEED -> NO MOBILITY
 	//setTimer(RN_TIMER_STATUS, timeOutStatus);
 	//setTimer(RN_TIMER_KEEP_ALIVE, intervalCounter);
-	//setTimer(RN_TIMER_TELEMETRY, 0);
+	setTimer(RN_TIMER_TELEMETRY, 0);
 
     newTrace("RNRouting::started up!");
 }
@@ -236,7 +236,7 @@ void RNRouting::fromMacHello(SDNRoutingPacket * netPacket){
 	if (users.find(atoi(netPacket->getSourceAddress())) != users.end()) {
 		sendPacket(SDN_CONFIRMATION_REGISTRY, netPacket);
 	} else {
-		sendPacket(SDN_REGISTER, netPacket);
+		// sendPacket(SDN_REGISTER, netPacket);
 	}
 }
 
@@ -314,6 +314,30 @@ void RNRouting::fromMacUpdateRoutingTable(SDNRoutingPacket * netPacket){
 	}
 }
 
+
+
+bool RNRouting::hasAlreadySentPacketIn(SDNRoutingPacket * netPacket) {
+	bool found = false;
+	queue< cPacket* > bufferTemp;
+	SDNRoutingPacket* currPkt;
+	while (!TXBuffer.empty()) {
+		currPkt = dynamic_cast <SDNRoutingPacket*>(TXBuffer.front());
+		if(	currPkt && 
+			(atoi(currPkt->getDestinationAddress()) == atoi(netPacket->getDestinationAddress())) ) {
+			found = true;
+			break;
+		}
+		bufferTemp.push(TXBuffer.front());
+		TXBuffer.pop();
+	}
+	while (!bufferTemp.empty()) {
+		TXBuffer.push(bufferTemp.front());
+		bufferTemp.pop();
+	}
+	return found;
+}
+
+
 void RNRouting::fromMacUpdateArea(SDNRoutingPacket * netPacket) {
 
 	newTrace(std::stringstream() 	<< "RNRouting::fromMacUpdateArea -> "
@@ -341,6 +365,7 @@ void RNRouting::fromMacAck(SDNRoutingPacket * netPacket){
             ++it;
         }
 	}
+
 	resetRemainingTimeSentPackets();
 	resetTimerPackets();
 }
@@ -481,7 +506,6 @@ SDNRoutingPacket * RNRouting::createPacket(int SDNRoutingPacketKind, SDNRoutingP
 				msg->setDestinationAddress(to_string(netPacket->getMsgUpdateUser().userId).c_str());
 			} else {
 				msg->setDestinationAddress(netPacket->getSourceAddress());
-				msg->setNextHopAddress(netPacket->getSourceAddress());
 			}
 			break;
 		}
@@ -555,8 +579,11 @@ void RNRouting::sendPacket(SDNRoutingPacket * netPacket) {
 			}
 		}
 	} else {
+		bool sendPacketIn = !(hasAlreadySentPacketIn(netPacket));
 		bufferPacket(netPacket->dup());
-		sendPacket(SDN_PACKET_IN, netPacket);
+		if (sendPacketIn){
+			sendPacket(SDN_PACKET_IN, netPacket);
+		}
 	}
 }
 
@@ -585,8 +612,9 @@ void RNRouting::addTelemetry(SDNRoutingPacket * netPacket) {
 	SDNTelemetry msgTelemetry;
 	msgTelemetry.source 		= atoi(netPacket->getSourceAddress());
 	msgTelemetry.destination 	= atoi(netPacket->getDestinationAddress());
-	msgTelemetry.messageType	= 0;
-	msgTelemetry.size 			= 0;
+	msgTelemetry.idVideo 		= netPacket->getIdVideo();
+	msgTelemetry.messageType	= netPacket->getMessageType();
+	msgTelemetry.size 			= netPacket->getByteLength();
 	netPacket->setMsgTelemetry(msgTelemetry);
 	netPacket->setHasTelemetry(true);
 }
