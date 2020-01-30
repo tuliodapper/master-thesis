@@ -2,6 +2,7 @@
 #define MOBILEAPP_H_
 
 #include "sim.h"
+#include "RoutingPacket_m.h"
 #include "WiseBaseApplication.h"
 #include "VirtualMobilityManager.h"
 #include <vector>
@@ -27,8 +28,8 @@ protected:
 
 	SimMessage simMessage;
 	SimMobility simMobility;
-	mobility_info_t nextMobilityInfo;
-	message_info_t nextMessageInfo;
+	mobility_info_t mobilityInfo;
+	message_info_t messageInfo;
 	void callBeaconSimplePkt(bool first = false);
 	void callChangeLocation(bool first = false);
 

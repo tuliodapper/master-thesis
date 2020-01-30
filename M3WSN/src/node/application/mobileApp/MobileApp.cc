@@ -38,9 +38,8 @@ void MobileApp::callBeaconSimplePkt(bool first){
 	// cout << "callBeaconSimplePkt" << endl;
     if (simMessage.isThereNextMessageInfo())
     {
-        nextMessageInfo = simMessage.retNextMessageInfo();
         // cout << "nextMessageInfo | id=" << self << " dest=" << nextMessageInfo.destination << endl;
-        setTimer(SEND_DATA_PACKET, nextMessageInfo.delay);
+        setTimer(SEND_DATA_PACKET, simMessage.getNextMessageInfoDelay());
     }
 }
 
@@ -48,9 +47,8 @@ void MobileApp::callChangeLocation(bool first){
     // cout << "callChangeLocation" << endl;
 	if (simMobility.isThereNextMobilityInfo())
 	{
-		nextMobilityInfo = simMobility.retNextMobilityInfo();
 		// cout << "nextMobilityInfo | id=" << self << " x=" << nextMobilityInfo.x << " y=" << nextMobilityInfo.y << endl;
-		setTimer(CHANGE_LOCATION, nextMobilityInfo.delay);
+		setTimer(CHANGE_LOCATION, simMobility.getNextMobilityInfoDelay());
 	}
 }
 
@@ -69,8 +67,10 @@ void MobileApp::timerFiredCallback(int index){
 	switch (index) {
 		case CHANGE_LOCATION:{
 
-			int x = nextMobilityInfo.x;
-			int y = nextMobilityInfo.y;
+			mobilityInfo = simMobility.retNextMobilityInfo();
+
+			int x = mobilityInfo.x;
+			int y = mobilityInfo.y;
 
 			MobilityManagerMessage* m = new MobilityManagerMessage("move", MOBILE_MESSAGE);
 			m->setXCoorDestination(x);
@@ -83,6 +83,8 @@ void MobileApp::timerFiredCallback(int index){
 		}
 		case SEND_DATA_PACKET:{
 
+        	messageInfo = simMessage.retNextMessageInfo();
+
 			if (checkConnected){
 		    	WiseApplicationPacket *appMsg = new WiseApplicationPacket("APPLICATION_MESSAGE", APPLICATION_MESSAGE);
 		    	toNetworkLayer(appMsg, SELF_NETWORK_ADDRESS);
@@ -91,21 +93,27 @@ void MobileApp::timerFiredCallback(int index){
 			if (not checkConnected or connected) {
 
 				idTransmission++;
-				if (nextMessageInfo.idVideo > 0) {
+
+				cout 	<< "nodeId: " 			<< self << " | "
+						<< "idTransmission: "	<< idTransmission << " | "
+						<< "idVideo: 		"	<< messageInfo.idVideo << " | "
+						<< "destination: " 		<< messageInfo.destination << endl;
+
+				if (messageInfo.messageType = MESSAGE_TYPE_VIDEO) {
 					WiseApplicationPacket* appMsg = new WiseApplicationPacket("REQUEST MULTIMEDIA PACKET", MULTIMEDIA_REQUEST_MESSAGE);
 					appMsg->setIdNode(self);
-					appMsg->setIdVideo(nextMessageInfo.idVideo);
-			    	appMsg->setByteLength(nextMessageInfo.byteLength);
-			    	appMsg->setMessageType(nextMessageInfo.messageType);
-			    	appMsg->setDestination(nextMessageInfo.destination);
+					appMsg->setIdVideo(messageInfo.idVideo);
+			    	appMsg->setByteLength(messageInfo.byteLength);
+			    	appMsg->setMessageType(messageInfo.messageType);
+			    	appMsg->setDestination(messageInfo.destination);
 			    	appMsg->setIdTransmission(idTransmission);
 					send(appMsg, "toSensorDeviceManager");
 				} else {
 			    	WiseApplicationPacket *appMsg = new WiseApplicationPacket("SENDING SIMPLE PACKET", APPLICATION_PACKET);
-			    	appMsg->setByteLength(nextMessageInfo.byteLength);
-			    	appMsg->setMessageType(nextMessageInfo.messageType);
+			    	appMsg->setByteLength(messageInfo.byteLength);
+			    	appMsg->setMessageType(messageInfo.messageType);
 			    	appMsg->setIdTransmission(idTransmission);
-			    	toNetworkLayer(appMsg, to_string(nextMessageInfo.destination).c_str());
+			    	toNetworkLayer(appMsg, to_string(messageInfo.destination).c_str());
 				}
 
 			} else {
@@ -122,8 +130,9 @@ void MobileApp::handleSensorReading(WiseSensorMessage* msg) {
     int msgKind = msg->getKind();
     switch (msgKind) {
         case MULTIMEDIA:{
-            WiseApplicationPacket *pktTrace = new WiseApplicationPacket("SENDING MULTIMEDIA DATA", MULTIMEDIA_PACKET);
+            WiseApplicationPacket *pktTrace = new WiseApplicationPacket("SENDING MULTIMEDIA DATA", APPLICATION_PACKET);
             pktTrace->setByteLength(msg->getByteLength());
+            pktTrace->setMessageType(messageInfo.messageType);
             pktTrace->setIdFrame(msg->getIdFrame());
             pktTrace->setFrame(msg->getFrame());
             pktTrace->setInfo(msg->getInfo());
@@ -133,7 +142,7 @@ void MobileApp::handleSensorReading(WiseSensorMessage* msg) {
             pktTrace->setIdVideo(msg->getInfo().seqNum);
             pktTrace->setIdTransmission(msg->getInfo().idTransmission);
             pktTrace->setRelevance(msg->getRelevance());
-            toNetworkLayer(pktTrace, to_string(nextMessageInfo.destination).c_str());
+            toNetworkLayer(pktTrace, to_string(messageInfo.destination).c_str());
             trace() << "Video id " << pktTrace->getIdVideo() << " frame id " << pktTrace->getFrame() << ", " << pktTrace->getInfo().frameType << "-frame " << pktTrace->getByteLength() << " bytes";
             break;
         }
@@ -141,21 +150,15 @@ void MobileApp::handleSensorReading(WiseSensorMessage* msg) {
 }
 
 void MobileApp::fromNetworkLayer(cPacket* msg, const char* src, double rssi, double lqi) {
-
-    cout << "MobileApp::fromNetworkLayer --> Kind = " << msg->getKind() << endl;
-
 	switch (msg->getKind()) {
 		case APPLICATION_MESSAGE:{
 			ApplicationPacket *appmsg = check_and_cast<ApplicationPacket*>(msg);
 			connected = appmsg->getConnected();
 			break;
 		}
-		//case APPLICATION_PACKET:{
-		case 52:{
+		case APPLICATION_PACKET:{
 			WiseApplicationPacket *rcvPackets = check_and_cast<WiseApplicationPacket*>(msg);
-			cout << "MobileApp::fromNetworkLayer --> MessageType = " << rcvPackets->getMessageType() << endl;
-			if (rcvPackets->getMessageType() == 0) {
-				cout << "processMessageTypeVideo entrou!" << endl;
+			if (rcvPackets->getMessageType() == MESSAGE_TYPE_VIDEO) {
 				processMessageTypeVideo(rcvPackets);
 			}
 			break;
