@@ -45,7 +45,7 @@ void UNRouting::fromMacLayer(cPacket *pkt, int srcMacAddress, double RSSI, doubl
 			if (!netPacket)
 				return;
 			if (self == atoi(netPacket->getDestinationAddress()) &&
-				atoi(netPacket->getNextHopAddress()) != atoi(BROADCAST_NETWORK_ADDRESS)){
+				self == atoi(netPacket->getNextHopAddress())){
 
                 newOutput(getOutputPacket(OUTPUT_PACKET_RECEIVED, netPacket));
                 newTrace(getTracePacket(OUTPUT_PACKET_RECEIVED, netPacket));
@@ -86,9 +86,7 @@ void UNRouting::fromApplicationLayer(cPacket *pkt, const char *dstAddr){
 			sendPacket(SDN_CLOSE);
 			break;
 		}
-
-		case APPLICATION_PACKET:
-		case MULTIMEDIA_PACKET: {
+		case APPLICATION_PACKET:{
 
 			ApplicationPacket *appPkt = check_and_cast <ApplicationPacket*>(pkt);
 
@@ -168,8 +166,8 @@ void UNRouting::fromMacData(SDNRoutingPacket * netPacket, cPacket *pkt){
 	// IGNORED AS THERE IS NO NEED -> NO MOBILITY
 	// cancelTimer(UN_TIMER_CHECK);
 	// setTimer(UN_TIMER_CHECK, timeOutCheck);
-    cout << "UNRouting::fromMacData --> MessageType = " << netPacket->getMessageType() << endl;
-	if (netPacket->getMessageType() == 0){
+    // cout << "UNRouting::fromMacData --> MessageType = " << netPacket->getMessageType() << endl;
+	if (netPacket->getMessageType() == MESSAGE_TYPE_VIDEO){
 		processMessageTypeVideo(pkt);
 	}
 }
@@ -273,59 +271,60 @@ void UNRouting::processMessageTypeVideo(cPacket *pkt){
 		SDNRoutingPacket *netPkt = packet->dup();
 		ApplicationPacket *appPkt = check_and_cast <ApplicationPacket*>(decapsulatePacket(netPkt));
 		int index = -1;
-		cout << "Init idVideo: " << netPacket->getIdVideo() << endl;
-		cout << "Init idTransmission: " << netPacket->getIdTransmission() << endl;
-		cout << "Size: " << route.size() << endl;
-		cout << "Source: " << netPacket->getSourceAddress() << endl;
-		cout << "Destination: " << netPacket->getDestinationAddress() << endl;
-		cout << "SequenceNumber: " << netPacket->getSequenceNumber() << endl;
+		
+		//cout << "Init idVideo: " << netPacket->getIdVideo() << endl;
+		//cout << "Init idTransmission: " << netPacket->getIdTransmission() << endl;
+		//cout << "Size: " << route.size() << endl;
+		//cout << "Source: " << netPacket->getSourceAddress() << endl;
+		//cout << "Destination: " << netPacket->getDestinationAddress() << endl;
+		//cout << "SequenceNumber: " << netPacket->getSequenceNumber() << endl;
 
 		for (int i = 0; i<route.size(); i++){
 			if (	(route[i].source == atoi(netPacket->getSourceAddress())) && 
 					(route[i].destination == atoi(netPacket->getDestinationAddress())) &&
 					(route[i].idTransmission == netPacket->getIdTransmission())){
-				cout << "Entrou no if Já existe no buffer" << endl;
+				//cout << "Entrou no if Já existe no buffer" << endl;
 				index = i;
 				break;
 			}
 		}
-		cout << "Linha 1" << endl;
+		//cout << "Linha 1" << endl;
 		if (index == -1){
-		    cout << "Criando transmissão no buffer" << endl;
+		    //cout << "Criando transmissão no buffer" << endl;
 			routeCInfo table;
 			table.source = atoi(netPacket->getSourceAddress());
 			table.destination = atoi(netPacket->getDestinationAddress());
-			cout << "idTransmission: " << netPacket->getIdVideo() << endl;
+			//cout << "idTransmission: " << netPacket->getIdVideo() << endl;
 			table.idTransmission = netPacket->getIdTransmission();
 			table.lastReceivedPacket = -1;
 			route.push_back(table);
 			index = route.size() - 1;
 		}
-		cout << "Linha 2" << endl;
+		//cout << "Linha 2" << endl;
 		double delay = (simTime().dbl() - appPkt->getAppNetInfoExchange().timestamp.dbl())*1000;
-		cout << "Linha 3" << endl;
+		//cout << "Linha 3" << endl;
 		if (index != -1){
-		    cout << "Linha 4" << endl;
+		    //cout << "Linha 4" << endl;
 			if((netPacket->getSequenceNumber() == 0 && route[index].lastReceivedPacket == -1) || netPacket->getSequenceNumber() == route[index].lastReceivedPacket + 1 || route[index].lastReceivedPacket == -1){
 				if (delay > macModule->getDelayMax()){ //drop due to packet deadline
-				    cout << "Linha 5" << endl;
+				    //cout << "Linha 5" << endl;
 				    trace() << "Drop packet - Delay (" << delay << ")higher than the playout deadline(" << macModule->getDelayMax() << ")";
 					route[index].lastReceivedPacket = netPacket->getSequenceNumber();
 					//statistics(atoi(netPacket->getSourceAddress()), atoi(netPacket->getDestinationLinGO()), netPacket->getIdVideo(), netPacket->getHopCount() + 1, 0,  XLINGOTC_STATISTICS_DROP_DELAY);
 				} else { //send packet to application layer
-				    cout << "Linha 6" << endl;
+				    //cout << "Linha 6" << endl;
 					trace() << "receive a subsequent pkt number " << netPacket->getSequenceNumber() << " and send it to application";
 					toApplicationLayer(decapsulatePacket(pkt));
 					route[index].lastReceivedPacket = netPacket->getSequenceNumber();
 					//statistics(atoi(netPacket->getSourceAddress()), atoi(netPacket->getDestinationAddress()), netPacket->getIdVideo(), netPacket->getHopCount() + 1, 0,  SDUAVNet_STATISTICS_RECEIVED_PACKET);
 					if (buffer.size() > 0 && searchBuffer(atoi(netPacket->getSourceAddress()), netPacket->getIdTransmission())){
-					    cout << "Linha 7" << endl;
+					    //cout << "Linha 7" << endl;
 					    sort(buffer.begin(), buffer.end(), SDUAVNet_sort_buffer);
-					    cout << "Linha 8" << endl;
+					    //cout << "Linha 8" << endl;
 						bool tmp = true;
 						while(buffer.size() > 0 && searchBuffer(atoi(netPacket->getSourceAddress()), netPacket->getIdTransmission()) && tmp){
 							tmp = false;
-							cout << "Linha 9" << endl;
+							//cout << "Linha 9" << endl;
 							for (int i=0; i<buffer.size(); i++){
 								SDNRoutingPacket *packet = dynamic_cast <SDNRoutingPacket*>(buffer[i].bufferPkt.front());
 								if (atoi(packet->getSourceAddress()) == atoi(netPacket->getSourceAddress()) && buffer[i].seqNumber == route[index].lastReceivedPacket + 1){
@@ -341,35 +340,35 @@ void UNRouting::processMessageTypeVideo(cPacket *pkt){
 					}
 				}
 			}else {
-			    cout << "Linha 10" << endl;
+			    //cout << "Linha 10" << endl;
 				if (route[index].lastReceivedPacket < netPacket->getSequenceNumber()){
-				    cout << "Linha 11" << endl;
+				    //cout << "Linha 11" << endl;
 					if ( delay > macModule->getDelayMax()){ //drop due to packet deadline
 						trace() << "Drop packet - Delay (" << delay << ")higher than the playout deadline(" << macModule->getDelayMax() << ")";
 						//statistics(atoi(netPacket->getSourceAddress()), atoi(netPacket->getDestinationLinGO()), netPacket->getIdVideo(), netPacket->getHopCount() + 1, 0,  XLINGOTC_STATISTICS_DROP_DELAY);
 					} else { //buffer the packet
-					    cout << "Linha 12" << endl;
+					    //cout << "Linha 12" << endl;
 						pktList temp;
-						cout << "Linha 12.1" << endl;
+						//cout << "Linha 12.1" << endl;
 						temp.seqNumber = netPacket->getSequenceNumber();
-						cout << "Linha 12.2" << endl;
+						//cout << "Linha 12.2" << endl;
 						temp.bufferPkt.push(netPacket->dup());
-						cout << "Linha 12.3" << endl;
+						//cout << "Linha 12.3" << endl;
 						buffer.push_back(temp);
-						cout << "Linha 12.4" << endl;
+						//cout << "Linha 12.4" << endl;
 						//statistics(atoi(netPacket->getSourceAddress()), atoi(netPacket->getDestinationAddress()), netPacket->getIdVideo(), netPacket->getHopCount() + 1, 0,  SDUAVNet_STATISTICS_RECEIVED_PACKET);
 						setMultipleTimer(UN_TIMER_CLEAN_BUFFER, netPacket->getIdTransmission(), 1);
-						cout << "Linha 12.5" << endl;
+						//cout << "Linha 12.5" << endl;
 						trace() << "Buffered pkt number " << netPacket->getSequenceNumber() << " buffer state: " << buffer.size() << "/" << netBufferSize;
 					}
 				}  else{
-				    cout << "Linha 13" << endl;
+				    //cout << "Linha 13" << endl;
 					trace() << "Drop packet number " << netPacket->getSequenceNumber() << ", due to it is old. Last Packet sent to App Layer";
 					trace() << "last rec pkt " << route[index].lastReceivedPacket << " for source " << route[index].source;
 					//statistics(atoi(netPacket->getSourceAddress()), atoi(netPacket->getDestinationLinGO()), netPacket->getIdVideo(), 0, 0, XLINGOTC_STATISTICS_DROP_NTW);
 				}
 				if (buffer.size() == netBufferSize){ //send buffered packets to application layer
-				    cout << "Linha 14" << endl;
+				    //cout << "Linha 14" << endl;
 					sort(buffer.begin(), buffer.end(), SDUAVNet_sort_buffer);
 					while(buffer.size() > (netBufferSize/2.0)){
 						SDNRoutingPacket *packet = dynamic_cast <SDNRoutingPacket*>(buffer[0].bufferPkt.front());
@@ -380,7 +379,7 @@ void UNRouting::processMessageTypeVideo(cPacket *pkt){
 						route[tmpIndex].lastReceivedPacket = buffer[0].seqNumber;
 						buffer.erase(buffer.begin()+0);
 					}
-					cout << "Linha 15" << endl;
+					//cout << "Linha 15" << endl;
 					bool tmp = true;
 					while(buffer.size() > 0 && searchBuffer(atoi(netPacket->getSourceAddress()), netPacket->getIdTransmission()) && tmp){
 						tmp = false;
@@ -398,20 +397,20 @@ void UNRouting::processMessageTypeVideo(cPacket *pkt){
 							}
 						}
 					}
-					cout << "Linha 16" << endl;
+					//cout << "Linha 16" << endl;
 					if (buffer.size() == 0)
 						cancelMultipleTimer(UN_TIMER_CLEAN_BUFFER, netPacket->getIdTransmission());
 				}
-				cout << "Linha 17" << endl;
+				//cout << "Linha 17" << endl;
 			}
-			cout << "Linha 18" << endl;
+			//cout << "Linha 18" << endl;
 		}
 
 	} else if (!notDuplicate){
 		///statistics(atoi(netPacket->getSourceAddress()), atoi(netPacket->getDestinationLinGO()), netPacket->getIdVideo(), netPacket->getHopCount() + 1, 0,  XLINGOTC_STATISTICS_DUPLICATED_PACKET);
 		trace() << "DN received a duplicated packet";
 	}
-	cout << "Linha 20" << endl;
+	//cout << "Linha 20" << endl;
 	trace() << "Routing buffer state: " << buffer.size() << "/" << netBufferSize;
 	trace() << "MAC control buffer state: " << macModule->getControlBufferSize() << "/" << macModule->macBufferSize;
 	trace() << "MAC buffer state: " << macModule->getBufferSize() << "/" << macModule->macBufferSize << "\n";
@@ -557,26 +556,26 @@ void UNRouting::multipleTimerFiredCallback(int index, int id){
 	switch (index) {
 
 		case UN_TIMER_CLEAN_BUFFER:{
-		    cout << "id: " << id << endl;
-		    cout << "Iniciou timer" << endl;
+		    //cout << "id: " << id << endl;
+		    //cout << "Iniciou timer" << endl;
 			sort(buffer.begin(), buffer.end(), SDUAVNet_sort_buffer);
-			cout << "saiu do sort" << endl;
+			//cout << "saiu do sort" << endl;
             bool repeat = true;
 			while(repeat){
 	            repeat = false;
-			    cout << "while size: " << buffer.size() << endl;
+			    //cout << "while size: " << buffer.size() << endl;
 				for (int i=0; i<buffer.size(); i++){
-				    cout << "For: " << i << endl;
+				    //cout << "For: " << i << endl;
 					SDNRoutingPacket *packet = dynamic_cast <SDNRoutingPacket*>(buffer[i].bufferPkt.front());
-					cout << "idTransmission: " << packet->getIdTransmission() << endl;
-					cout << "SequenceNumber: " << packet->getSequenceNumber() << endl;
+					//cout << "idTransmission: " << packet->getIdTransmission() << endl;
+					//cout << "SequenceNumber: " << packet->getSequenceNumber() << endl;
 					if (packet->getIdTransmission() == id){
-					    cout << "entrou no IF" << endl;
+					    //cout << "entrou no IF" << endl;
 						trace() << "Send pkt number " << buffer[i].seqNumber << " to application";
 						toApplicationLayer(decapsulatePacket(buffer[i].bufferPkt.front()));
-						cout << "Linha 1" << endl;
+						//cout << "Linha 1" << endl;
 						buffer.erase(buffer.begin()+i);
-						cout << "Linha 2" << endl;
+						//cout << "Linha 2" << endl;
 						repeat = true;
 						break;
 					}
