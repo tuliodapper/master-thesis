@@ -48,7 +48,7 @@ struct TableStruct_contract_5fin_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[9]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[11]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -80,6 +80,12 @@ extern ContractIn_RegisterDefaultTypeInternal _ContractIn_Register_default_insta
 class ContractIn_Status;
 class ContractIn_StatusDefaultTypeInternal;
 extern ContractIn_StatusDefaultTypeInternal _ContractIn_Status_default_instance_;
+class ContractIn_Telemetry;
+class ContractIn_TelemetryDefaultTypeInternal;
+extern ContractIn_TelemetryDefaultTypeInternal _ContractIn_Telemetry_default_instance_;
+class ContractIn_TelemetryByHop;
+class ContractIn_TelemetryByHopDefaultTypeInternal;
+extern ContractIn_TelemetryByHopDefaultTypeInternal _ContractIn_TelemetryByHop_default_instance_;
 class ContractIn_Unregister;
 class ContractIn_UnregisterDefaultTypeInternal;
 extern ContractIn_UnregisterDefaultTypeInternal _ContractIn_Unregister_default_instance_;
@@ -93,6 +99,8 @@ template<> ::contract_in::ContractIn_NotifyStatusRelay* Arena::CreateMaybeMessag
 template<> ::contract_in::ContractIn_NotifyStatusUser* Arena::CreateMaybeMessage<::contract_in::ContractIn_NotifyStatusUser>(Arena*);
 template<> ::contract_in::ContractIn_Register* Arena::CreateMaybeMessage<::contract_in::ContractIn_Register>(Arena*);
 template<> ::contract_in::ContractIn_Status* Arena::CreateMaybeMessage<::contract_in::ContractIn_Status>(Arena*);
+template<> ::contract_in::ContractIn_Telemetry* Arena::CreateMaybeMessage<::contract_in::ContractIn_Telemetry>(Arena*);
+template<> ::contract_in::ContractIn_TelemetryByHop* Arena::CreateMaybeMessage<::contract_in::ContractIn_TelemetryByHop>(Arena*);
 template<> ::contract_in::ContractIn_Unregister* Arena::CreateMaybeMessage<::contract_in::ContractIn_Unregister>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace contract_in {
@@ -106,11 +114,12 @@ enum ContractIn_ContractInPacket : int {
   ContractIn_ContractInPacket_REFRESH_REGISTER_USER = 6,
   ContractIn_ContractInPacket_NOTIFY_STATUS_CONTROLLER = 7,
   ContractIn_ContractInPacket_PACKET_IN = 8,
-  ContractIn_ContractInPacket_REQUEST = 9
+  ContractIn_ContractInPacket_REQUEST = 9,
+  ContractIn_ContractInPacket_TELEMETRY = 10
 };
 bool ContractIn_ContractInPacket_IsValid(int value);
 constexpr ContractIn_ContractInPacket ContractIn_ContractInPacket_ContractInPacket_MIN = ContractIn_ContractInPacket_UNREGISTER_USER;
-constexpr ContractIn_ContractInPacket ContractIn_ContractInPacket_ContractInPacket_MAX = ContractIn_ContractInPacket_REQUEST;
+constexpr ContractIn_ContractInPacket ContractIn_ContractInPacket_ContractInPacket_MAX = ContractIn_ContractInPacket_TELEMETRY;
 constexpr int ContractIn_ContractInPacket_ContractInPacket_ARRAYSIZE = ContractIn_ContractInPacket_ContractInPacket_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ContractIn_ContractInPacket_descriptor();
@@ -1365,6 +1374,470 @@ class ContractIn_Register :
 };
 // -------------------------------------------------------------------
 
+class ContractIn_TelemetryByHop :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:contract_in.ContractIn.TelemetryByHop) */ {
+ public:
+  ContractIn_TelemetryByHop();
+  virtual ~ContractIn_TelemetryByHop();
+
+  ContractIn_TelemetryByHop(const ContractIn_TelemetryByHop& from);
+  ContractIn_TelemetryByHop(ContractIn_TelemetryByHop&& from) noexcept
+    : ContractIn_TelemetryByHop() {
+    *this = ::std::move(from);
+  }
+
+  inline ContractIn_TelemetryByHop& operator=(const ContractIn_TelemetryByHop& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ContractIn_TelemetryByHop& operator=(ContractIn_TelemetryByHop&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ContractIn_TelemetryByHop& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ContractIn_TelemetryByHop* internal_default_instance() {
+    return reinterpret_cast<const ContractIn_TelemetryByHop*>(
+               &_ContractIn_TelemetryByHop_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(ContractIn_TelemetryByHop& a, ContractIn_TelemetryByHop& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ContractIn_TelemetryByHop* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ContractIn_TelemetryByHop* New() const final {
+    return CreateMaybeMessage<ContractIn_TelemetryByHop>(nullptr);
+  }
+
+  ContractIn_TelemetryByHop* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ContractIn_TelemetryByHop>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ContractIn_TelemetryByHop& from);
+  void MergeFrom(const ContractIn_TelemetryByHop& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ContractIn_TelemetryByHop* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "contract_in.ContractIn.TelemetryByHop";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_contract_5fin_2eproto);
+    return ::descriptor_table_contract_5fin_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTimeReceivedFieldNumber = 2,
+    kRssiFieldNumber = 7,
+    kRelayIdFieldNumber = 1,
+    kLenQueueMacFieldNumber = 3,
+    kLenQueueNetFieldNumber = 4,
+    kPacketDropMacFieldNumber = 5,
+    kPacketDropNetFieldNumber = 6,
+  };
+  // optional string timeReceived = 2;
+  bool has_timereceived() const;
+  private:
+  bool _internal_has_timereceived() const;
+  public:
+  void clear_timereceived();
+  const std::string& timereceived() const;
+  void set_timereceived(const std::string& value);
+  void set_timereceived(std::string&& value);
+  void set_timereceived(const char* value);
+  void set_timereceived(const char* value, size_t size);
+  std::string* mutable_timereceived();
+  std::string* release_timereceived();
+  void set_allocated_timereceived(std::string* timereceived);
+  private:
+  const std::string& _internal_timereceived() const;
+  void _internal_set_timereceived(const std::string& value);
+  std::string* _internal_mutable_timereceived();
+  public:
+
+  // optional string rssi = 7;
+  bool has_rssi() const;
+  private:
+  bool _internal_has_rssi() const;
+  public:
+  void clear_rssi();
+  const std::string& rssi() const;
+  void set_rssi(const std::string& value);
+  void set_rssi(std::string&& value);
+  void set_rssi(const char* value);
+  void set_rssi(const char* value, size_t size);
+  std::string* mutable_rssi();
+  std::string* release_rssi();
+  void set_allocated_rssi(std::string* rssi);
+  private:
+  const std::string& _internal_rssi() const;
+  void _internal_set_rssi(const std::string& value);
+  std::string* _internal_mutable_rssi();
+  public:
+
+  // optional int32 relayId = 1;
+  bool has_relayid() const;
+  private:
+  bool _internal_has_relayid() const;
+  public:
+  void clear_relayid();
+  ::PROTOBUF_NAMESPACE_ID::int32 relayid() const;
+  void set_relayid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_relayid() const;
+  void _internal_set_relayid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 lenQueueMac = 3;
+  bool has_lenqueuemac() const;
+  private:
+  bool _internal_has_lenqueuemac() const;
+  public:
+  void clear_lenqueuemac();
+  ::PROTOBUF_NAMESPACE_ID::int32 lenqueuemac() const;
+  void set_lenqueuemac(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_lenqueuemac() const;
+  void _internal_set_lenqueuemac(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 lenQueueNet = 4;
+  bool has_lenqueuenet() const;
+  private:
+  bool _internal_has_lenqueuenet() const;
+  public:
+  void clear_lenqueuenet();
+  ::PROTOBUF_NAMESPACE_ID::int32 lenqueuenet() const;
+  void set_lenqueuenet(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_lenqueuenet() const;
+  void _internal_set_lenqueuenet(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 packetDropMac = 5;
+  bool has_packetdropmac() const;
+  private:
+  bool _internal_has_packetdropmac() const;
+  public:
+  void clear_packetdropmac();
+  ::PROTOBUF_NAMESPACE_ID::int32 packetdropmac() const;
+  void set_packetdropmac(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_packetdropmac() const;
+  void _internal_set_packetdropmac(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 packetDropNet = 6;
+  bool has_packetdropnet() const;
+  private:
+  bool _internal_has_packetdropnet() const;
+  public:
+  void clear_packetdropnet();
+  ::PROTOBUF_NAMESPACE_ID::int32 packetdropnet() const;
+  void set_packetdropnet(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_packetdropnet() const;
+  void _internal_set_packetdropnet(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:contract_in.ContractIn.TelemetryByHop)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr timereceived_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr rssi_;
+  ::PROTOBUF_NAMESPACE_ID::int32 relayid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 lenqueuemac_;
+  ::PROTOBUF_NAMESPACE_ID::int32 lenqueuenet_;
+  ::PROTOBUF_NAMESPACE_ID::int32 packetdropmac_;
+  ::PROTOBUF_NAMESPACE_ID::int32 packetdropnet_;
+  friend struct ::TableStruct_contract_5fin_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ContractIn_Telemetry :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:contract_in.ContractIn.Telemetry) */ {
+ public:
+  ContractIn_Telemetry();
+  virtual ~ContractIn_Telemetry();
+
+  ContractIn_Telemetry(const ContractIn_Telemetry& from);
+  ContractIn_Telemetry(ContractIn_Telemetry&& from) noexcept
+    : ContractIn_Telemetry() {
+    *this = ::std::move(from);
+  }
+
+  inline ContractIn_Telemetry& operator=(const ContractIn_Telemetry& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ContractIn_Telemetry& operator=(ContractIn_Telemetry&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ContractIn_Telemetry& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ContractIn_Telemetry* internal_default_instance() {
+    return reinterpret_cast<const ContractIn_Telemetry*>(
+               &_ContractIn_Telemetry_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(ContractIn_Telemetry& a, ContractIn_Telemetry& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ContractIn_Telemetry* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ContractIn_Telemetry* New() const final {
+    return CreateMaybeMessage<ContractIn_Telemetry>(nullptr);
+  }
+
+  ContractIn_Telemetry* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ContractIn_Telemetry>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ContractIn_Telemetry& from);
+  void MergeFrom(const ContractIn_Telemetry& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* InternalSerializeWithCachedSizesToArray(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ContractIn_Telemetry* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "contract_in.ContractIn.Telemetry";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_contract_5fin_2eproto);
+    return ::descriptor_table_contract_5fin_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMsgTelemetryByHopFieldNumber = 6,
+    kSourceFieldNumber = 1,
+    kDestinationFieldNumber = 2,
+    kMessageTypeFieldNumber = 3,
+    kSizeFieldNumber = 4,
+    kIdVideoFieldNumber = 5,
+  };
+  // repeated .contract_in.ContractIn.TelemetryByHop msgTelemetryByHop = 6;
+  int msgtelemetrybyhop_size() const;
+  private:
+  int _internal_msgtelemetrybyhop_size() const;
+  public:
+  void clear_msgtelemetrybyhop();
+  ::contract_in::ContractIn_TelemetryByHop* mutable_msgtelemetrybyhop(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::contract_in::ContractIn_TelemetryByHop >*
+      mutable_msgtelemetrybyhop();
+  private:
+  const ::contract_in::ContractIn_TelemetryByHop& _internal_msgtelemetrybyhop(int index) const;
+  ::contract_in::ContractIn_TelemetryByHop* _internal_add_msgtelemetrybyhop();
+  public:
+  const ::contract_in::ContractIn_TelemetryByHop& msgtelemetrybyhop(int index) const;
+  ::contract_in::ContractIn_TelemetryByHop* add_msgtelemetrybyhop();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::contract_in::ContractIn_TelemetryByHop >&
+      msgtelemetrybyhop() const;
+
+  // optional int32 source = 1;
+  bool has_source() const;
+  private:
+  bool _internal_has_source() const;
+  public:
+  void clear_source();
+  ::PROTOBUF_NAMESPACE_ID::int32 source() const;
+  void set_source(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_source() const;
+  void _internal_set_source(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 destination = 2;
+  bool has_destination() const;
+  private:
+  bool _internal_has_destination() const;
+  public:
+  void clear_destination();
+  ::PROTOBUF_NAMESPACE_ID::int32 destination() const;
+  void set_destination(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_destination() const;
+  void _internal_set_destination(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 messageType = 3;
+  bool has_messagetype() const;
+  private:
+  bool _internal_has_messagetype() const;
+  public:
+  void clear_messagetype();
+  ::PROTOBUF_NAMESPACE_ID::int32 messagetype() const;
+  void set_messagetype(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_messagetype() const;
+  void _internal_set_messagetype(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 size = 4;
+  bool has_size() const;
+  private:
+  bool _internal_has_size() const;
+  public:
+  void clear_size();
+  ::PROTOBUF_NAMESPACE_ID::int32 size() const;
+  void set_size(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_size() const;
+  void _internal_set_size(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // optional int32 idVideo = 5;
+  bool has_idvideo() const;
+  private:
+  bool _internal_has_idvideo() const;
+  public:
+  void clear_idvideo();
+  ::PROTOBUF_NAMESPACE_ID::int32 idvideo() const;
+  void set_idvideo(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_idvideo() const;
+  void _internal_set_idvideo(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:contract_in.ContractIn.Telemetry)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::contract_in::ContractIn_TelemetryByHop > msgtelemetrybyhop_;
+  ::PROTOBUF_NAMESPACE_ID::int32 source_;
+  ::PROTOBUF_NAMESPACE_ID::int32 destination_;
+  ::PROTOBUF_NAMESPACE_ID::int32 messagetype_;
+  ::PROTOBUF_NAMESPACE_ID::int32 size_;
+  ::PROTOBUF_NAMESPACE_ID::int32 idvideo_;
+  friend struct ::TableStruct_contract_5fin_2eproto;
+};
+// -------------------------------------------------------------------
+
 class ContractIn :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:contract_in.ContractIn) */ {
  public:
@@ -1414,7 +1887,7 @@ class ContractIn :
                &_ContractIn_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(ContractIn& a, ContractIn& b) {
     a.Swap(&b);
@@ -1483,6 +1956,8 @@ class ContractIn :
   typedef ContractIn_NotifyStatusRelay NotifyStatusRelay;
   typedef ContractIn_Unregister Unregister;
   typedef ContractIn_Register Register;
+  typedef ContractIn_TelemetryByHop TelemetryByHop;
+  typedef ContractIn_Telemetry Telemetry;
 
   typedef ContractIn_ContractInPacket ContractInPacket;
   static constexpr ContractInPacket UNREGISTER_USER =
@@ -1503,6 +1978,8 @@ class ContractIn :
     ContractIn_ContractInPacket_PACKET_IN;
   static constexpr ContractInPacket REQUEST =
     ContractIn_ContractInPacket_REQUEST;
+  static constexpr ContractInPacket TELEMETRY =
+    ContractIn_ContractInPacket_TELEMETRY;
   static inline bool ContractInPacket_IsValid(int value) {
     return ContractIn_ContractInPacket_IsValid(value);
   }
@@ -1567,6 +2044,7 @@ class ContractIn :
     kMsgNotifyStatusRelayFieldNumber = 7,
     kMsgUnregisterFieldNumber = 8,
     kMsgRegisterFieldNumber = 9,
+    kMsgTelemetryFieldNumber = 10,
     kUserIdFieldNumber = 2,
     kRelayIdFieldNumber = 3,
     kContractInPacketFieldNumber = 4,
@@ -1666,6 +2144,21 @@ class ContractIn :
   ::contract_in::ContractIn_Register* _internal_mutable_msgregister();
   public:
 
+  // optional .contract_in.ContractIn.Telemetry msgTelemetry = 10;
+  bool has_msgtelemetry() const;
+  private:
+  bool _internal_has_msgtelemetry() const;
+  public:
+  void clear_msgtelemetry();
+  const ::contract_in::ContractIn_Telemetry& msgtelemetry() const;
+  ::contract_in::ContractIn_Telemetry* release_msgtelemetry();
+  ::contract_in::ContractIn_Telemetry* mutable_msgtelemetry();
+  void set_allocated_msgtelemetry(::contract_in::ContractIn_Telemetry* msgtelemetry);
+  private:
+  const ::contract_in::ContractIn_Telemetry& _internal_msgtelemetry() const;
+  ::contract_in::ContractIn_Telemetry* _internal_mutable_msgtelemetry();
+  public:
+
   // optional int32 userId = 2;
   bool has_userid() const;
   private:
@@ -1718,6 +2211,7 @@ class ContractIn :
   ::contract_in::ContractIn_NotifyStatusRelay* msgnotifystatusrelay_;
   ::contract_in::ContractIn_Unregister* msgunregister_;
   ::contract_in::ContractIn_Register* msgregister_;
+  ::contract_in::ContractIn_Telemetry* msgtelemetry_;
   ::PROTOBUF_NAMESPACE_ID::int32 userid_;
   ::PROTOBUF_NAMESPACE_ID::int32 relayid_;
   int contractinpacket_;
@@ -2422,6 +2916,475 @@ inline void ContractIn_Register::set_allocated_load(::contract_in::ContractIn_Lo
 
 // -------------------------------------------------------------------
 
+// ContractIn_TelemetryByHop
+
+// optional int32 relayId = 1;
+inline bool ContractIn_TelemetryByHop::_internal_has_relayid() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool ContractIn_TelemetryByHop::has_relayid() const {
+  return _internal_has_relayid();
+}
+inline void ContractIn_TelemetryByHop::clear_relayid() {
+  relayid_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_TelemetryByHop::_internal_relayid() const {
+  return relayid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_TelemetryByHop::relayid() const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.TelemetryByHop.relayId)
+  return _internal_relayid();
+}
+inline void ContractIn_TelemetryByHop::_internal_set_relayid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000004u;
+  relayid_ = value;
+}
+inline void ContractIn_TelemetryByHop::set_relayid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_relayid(value);
+  // @@protoc_insertion_point(field_set:contract_in.ContractIn.TelemetryByHop.relayId)
+}
+
+// optional string timeReceived = 2;
+inline bool ContractIn_TelemetryByHop::_internal_has_timereceived() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool ContractIn_TelemetryByHop::has_timereceived() const {
+  return _internal_has_timereceived();
+}
+inline void ContractIn_TelemetryByHop::clear_timereceived() {
+  timereceived_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& ContractIn_TelemetryByHop::timereceived() const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.TelemetryByHop.timeReceived)
+  return _internal_timereceived();
+}
+inline void ContractIn_TelemetryByHop::set_timereceived(const std::string& value) {
+  _internal_set_timereceived(value);
+  // @@protoc_insertion_point(field_set:contract_in.ContractIn.TelemetryByHop.timeReceived)
+}
+inline std::string* ContractIn_TelemetryByHop::mutable_timereceived() {
+  // @@protoc_insertion_point(field_mutable:contract_in.ContractIn.TelemetryByHop.timeReceived)
+  return _internal_mutable_timereceived();
+}
+inline const std::string& ContractIn_TelemetryByHop::_internal_timereceived() const {
+  return timereceived_.GetNoArena();
+}
+inline void ContractIn_TelemetryByHop::_internal_set_timereceived(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  timereceived_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void ContractIn_TelemetryByHop::set_timereceived(std::string&& value) {
+  _has_bits_[0] |= 0x00000001u;
+  timereceived_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:contract_in.ContractIn.TelemetryByHop.timeReceived)
+}
+inline void ContractIn_TelemetryByHop::set_timereceived(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000001u;
+  timereceived_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:contract_in.ContractIn.TelemetryByHop.timeReceived)
+}
+inline void ContractIn_TelemetryByHop::set_timereceived(const char* value, size_t size) {
+  _has_bits_[0] |= 0x00000001u;
+  timereceived_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:contract_in.ContractIn.TelemetryByHop.timeReceived)
+}
+inline std::string* ContractIn_TelemetryByHop::_internal_mutable_timereceived() {
+  _has_bits_[0] |= 0x00000001u;
+  return timereceived_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* ContractIn_TelemetryByHop::release_timereceived() {
+  // @@protoc_insertion_point(field_release:contract_in.ContractIn.TelemetryByHop.timeReceived)
+  if (!has_timereceived()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  return timereceived_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void ContractIn_TelemetryByHop::set_allocated_timereceived(std::string* timereceived) {
+  if (timereceived != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  timereceived_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), timereceived);
+  // @@protoc_insertion_point(field_set_allocated:contract_in.ContractIn.TelemetryByHop.timeReceived)
+}
+
+// optional int32 lenQueueMac = 3;
+inline bool ContractIn_TelemetryByHop::_internal_has_lenqueuemac() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool ContractIn_TelemetryByHop::has_lenqueuemac() const {
+  return _internal_has_lenqueuemac();
+}
+inline void ContractIn_TelemetryByHop::clear_lenqueuemac() {
+  lenqueuemac_ = 0;
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_TelemetryByHop::_internal_lenqueuemac() const {
+  return lenqueuemac_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_TelemetryByHop::lenqueuemac() const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.TelemetryByHop.lenQueueMac)
+  return _internal_lenqueuemac();
+}
+inline void ContractIn_TelemetryByHop::_internal_set_lenqueuemac(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000008u;
+  lenqueuemac_ = value;
+}
+inline void ContractIn_TelemetryByHop::set_lenqueuemac(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_lenqueuemac(value);
+  // @@protoc_insertion_point(field_set:contract_in.ContractIn.TelemetryByHop.lenQueueMac)
+}
+
+// optional int32 lenQueueNet = 4;
+inline bool ContractIn_TelemetryByHop::_internal_has_lenqueuenet() const {
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline bool ContractIn_TelemetryByHop::has_lenqueuenet() const {
+  return _internal_has_lenqueuenet();
+}
+inline void ContractIn_TelemetryByHop::clear_lenqueuenet() {
+  lenqueuenet_ = 0;
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_TelemetryByHop::_internal_lenqueuenet() const {
+  return lenqueuenet_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_TelemetryByHop::lenqueuenet() const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.TelemetryByHop.lenQueueNet)
+  return _internal_lenqueuenet();
+}
+inline void ContractIn_TelemetryByHop::_internal_set_lenqueuenet(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000010u;
+  lenqueuenet_ = value;
+}
+inline void ContractIn_TelemetryByHop::set_lenqueuenet(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_lenqueuenet(value);
+  // @@protoc_insertion_point(field_set:contract_in.ContractIn.TelemetryByHop.lenQueueNet)
+}
+
+// optional int32 packetDropMac = 5;
+inline bool ContractIn_TelemetryByHop::_internal_has_packetdropmac() const {
+  bool value = (_has_bits_[0] & 0x00000020u) != 0;
+  return value;
+}
+inline bool ContractIn_TelemetryByHop::has_packetdropmac() const {
+  return _internal_has_packetdropmac();
+}
+inline void ContractIn_TelemetryByHop::clear_packetdropmac() {
+  packetdropmac_ = 0;
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_TelemetryByHop::_internal_packetdropmac() const {
+  return packetdropmac_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_TelemetryByHop::packetdropmac() const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.TelemetryByHop.packetDropMac)
+  return _internal_packetdropmac();
+}
+inline void ContractIn_TelemetryByHop::_internal_set_packetdropmac(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000020u;
+  packetdropmac_ = value;
+}
+inline void ContractIn_TelemetryByHop::set_packetdropmac(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_packetdropmac(value);
+  // @@protoc_insertion_point(field_set:contract_in.ContractIn.TelemetryByHop.packetDropMac)
+}
+
+// optional int32 packetDropNet = 6;
+inline bool ContractIn_TelemetryByHop::_internal_has_packetdropnet() const {
+  bool value = (_has_bits_[0] & 0x00000040u) != 0;
+  return value;
+}
+inline bool ContractIn_TelemetryByHop::has_packetdropnet() const {
+  return _internal_has_packetdropnet();
+}
+inline void ContractIn_TelemetryByHop::clear_packetdropnet() {
+  packetdropnet_ = 0;
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_TelemetryByHop::_internal_packetdropnet() const {
+  return packetdropnet_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_TelemetryByHop::packetdropnet() const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.TelemetryByHop.packetDropNet)
+  return _internal_packetdropnet();
+}
+inline void ContractIn_TelemetryByHop::_internal_set_packetdropnet(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000040u;
+  packetdropnet_ = value;
+}
+inline void ContractIn_TelemetryByHop::set_packetdropnet(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_packetdropnet(value);
+  // @@protoc_insertion_point(field_set:contract_in.ContractIn.TelemetryByHop.packetDropNet)
+}
+
+// optional string rssi = 7;
+inline bool ContractIn_TelemetryByHop::_internal_has_rssi() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool ContractIn_TelemetryByHop::has_rssi() const {
+  return _internal_has_rssi();
+}
+inline void ContractIn_TelemetryByHop::clear_rssi() {
+  rssi_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& ContractIn_TelemetryByHop::rssi() const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.TelemetryByHop.rssi)
+  return _internal_rssi();
+}
+inline void ContractIn_TelemetryByHop::set_rssi(const std::string& value) {
+  _internal_set_rssi(value);
+  // @@protoc_insertion_point(field_set:contract_in.ContractIn.TelemetryByHop.rssi)
+}
+inline std::string* ContractIn_TelemetryByHop::mutable_rssi() {
+  // @@protoc_insertion_point(field_mutable:contract_in.ContractIn.TelemetryByHop.rssi)
+  return _internal_mutable_rssi();
+}
+inline const std::string& ContractIn_TelemetryByHop::_internal_rssi() const {
+  return rssi_.GetNoArena();
+}
+inline void ContractIn_TelemetryByHop::_internal_set_rssi(const std::string& value) {
+  _has_bits_[0] |= 0x00000002u;
+  rssi_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void ContractIn_TelemetryByHop::set_rssi(std::string&& value) {
+  _has_bits_[0] |= 0x00000002u;
+  rssi_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:contract_in.ContractIn.TelemetryByHop.rssi)
+}
+inline void ContractIn_TelemetryByHop::set_rssi(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000002u;
+  rssi_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:contract_in.ContractIn.TelemetryByHop.rssi)
+}
+inline void ContractIn_TelemetryByHop::set_rssi(const char* value, size_t size) {
+  _has_bits_[0] |= 0x00000002u;
+  rssi_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:contract_in.ContractIn.TelemetryByHop.rssi)
+}
+inline std::string* ContractIn_TelemetryByHop::_internal_mutable_rssi() {
+  _has_bits_[0] |= 0x00000002u;
+  return rssi_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* ContractIn_TelemetryByHop::release_rssi() {
+  // @@protoc_insertion_point(field_release:contract_in.ContractIn.TelemetryByHop.rssi)
+  if (!has_rssi()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000002u;
+  return rssi_.ReleaseNonDefaultNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void ContractIn_TelemetryByHop::set_allocated_rssi(std::string* rssi) {
+  if (rssi != nullptr) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  rssi_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), rssi);
+  // @@protoc_insertion_point(field_set_allocated:contract_in.ContractIn.TelemetryByHop.rssi)
+}
+
+// -------------------------------------------------------------------
+
+// ContractIn_Telemetry
+
+// optional int32 source = 1;
+inline bool ContractIn_Telemetry::_internal_has_source() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool ContractIn_Telemetry::has_source() const {
+  return _internal_has_source();
+}
+inline void ContractIn_Telemetry::clear_source() {
+  source_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_Telemetry::_internal_source() const {
+  return source_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_Telemetry::source() const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.Telemetry.source)
+  return _internal_source();
+}
+inline void ContractIn_Telemetry::_internal_set_source(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000001u;
+  source_ = value;
+}
+inline void ContractIn_Telemetry::set_source(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_source(value);
+  // @@protoc_insertion_point(field_set:contract_in.ContractIn.Telemetry.source)
+}
+
+// optional int32 destination = 2;
+inline bool ContractIn_Telemetry::_internal_has_destination() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool ContractIn_Telemetry::has_destination() const {
+  return _internal_has_destination();
+}
+inline void ContractIn_Telemetry::clear_destination() {
+  destination_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_Telemetry::_internal_destination() const {
+  return destination_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_Telemetry::destination() const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.Telemetry.destination)
+  return _internal_destination();
+}
+inline void ContractIn_Telemetry::_internal_set_destination(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000002u;
+  destination_ = value;
+}
+inline void ContractIn_Telemetry::set_destination(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_destination(value);
+  // @@protoc_insertion_point(field_set:contract_in.ContractIn.Telemetry.destination)
+}
+
+// optional int32 messageType = 3;
+inline bool ContractIn_Telemetry::_internal_has_messagetype() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool ContractIn_Telemetry::has_messagetype() const {
+  return _internal_has_messagetype();
+}
+inline void ContractIn_Telemetry::clear_messagetype() {
+  messagetype_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_Telemetry::_internal_messagetype() const {
+  return messagetype_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_Telemetry::messagetype() const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.Telemetry.messageType)
+  return _internal_messagetype();
+}
+inline void ContractIn_Telemetry::_internal_set_messagetype(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000004u;
+  messagetype_ = value;
+}
+inline void ContractIn_Telemetry::set_messagetype(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_messagetype(value);
+  // @@protoc_insertion_point(field_set:contract_in.ContractIn.Telemetry.messageType)
+}
+
+// optional int32 size = 4;
+inline bool ContractIn_Telemetry::_internal_has_size() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool ContractIn_Telemetry::has_size() const {
+  return _internal_has_size();
+}
+inline void ContractIn_Telemetry::clear_size() {
+  size_ = 0;
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_Telemetry::_internal_size() const {
+  return size_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_Telemetry::size() const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.Telemetry.size)
+  return _internal_size();
+}
+inline void ContractIn_Telemetry::_internal_set_size(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000008u;
+  size_ = value;
+}
+inline void ContractIn_Telemetry::set_size(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_size(value);
+  // @@protoc_insertion_point(field_set:contract_in.ContractIn.Telemetry.size)
+}
+
+// optional int32 idVideo = 5;
+inline bool ContractIn_Telemetry::_internal_has_idvideo() const {
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline bool ContractIn_Telemetry::has_idvideo() const {
+  return _internal_has_idvideo();
+}
+inline void ContractIn_Telemetry::clear_idvideo() {
+  idvideo_ = 0;
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_Telemetry::_internal_idvideo() const {
+  return idvideo_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn_Telemetry::idvideo() const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.Telemetry.idVideo)
+  return _internal_idvideo();
+}
+inline void ContractIn_Telemetry::_internal_set_idvideo(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000010u;
+  idvideo_ = value;
+}
+inline void ContractIn_Telemetry::set_idvideo(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_idvideo(value);
+  // @@protoc_insertion_point(field_set:contract_in.ContractIn.Telemetry.idVideo)
+}
+
+// repeated .contract_in.ContractIn.TelemetryByHop msgTelemetryByHop = 6;
+inline int ContractIn_Telemetry::_internal_msgtelemetrybyhop_size() const {
+  return msgtelemetrybyhop_.size();
+}
+inline int ContractIn_Telemetry::msgtelemetrybyhop_size() const {
+  return _internal_msgtelemetrybyhop_size();
+}
+inline void ContractIn_Telemetry::clear_msgtelemetrybyhop() {
+  msgtelemetrybyhop_.Clear();
+}
+inline ::contract_in::ContractIn_TelemetryByHop* ContractIn_Telemetry::mutable_msgtelemetrybyhop(int index) {
+  // @@protoc_insertion_point(field_mutable:contract_in.ContractIn.Telemetry.msgTelemetryByHop)
+  return msgtelemetrybyhop_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::contract_in::ContractIn_TelemetryByHop >*
+ContractIn_Telemetry::mutable_msgtelemetrybyhop() {
+  // @@protoc_insertion_point(field_mutable_list:contract_in.ContractIn.Telemetry.msgTelemetryByHop)
+  return &msgtelemetrybyhop_;
+}
+inline const ::contract_in::ContractIn_TelemetryByHop& ContractIn_Telemetry::_internal_msgtelemetrybyhop(int index) const {
+  return msgtelemetrybyhop_.Get(index);
+}
+inline const ::contract_in::ContractIn_TelemetryByHop& ContractIn_Telemetry::msgtelemetrybyhop(int index) const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.Telemetry.msgTelemetryByHop)
+  return _internal_msgtelemetrybyhop(index);
+}
+inline ::contract_in::ContractIn_TelemetryByHop* ContractIn_Telemetry::_internal_add_msgtelemetrybyhop() {
+  return msgtelemetrybyhop_.Add();
+}
+inline ::contract_in::ContractIn_TelemetryByHop* ContractIn_Telemetry::add_msgtelemetrybyhop() {
+  // @@protoc_insertion_point(field_add:contract_in.ContractIn.Telemetry.msgTelemetryByHop)
+  return _internal_add_msgtelemetrybyhop();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::contract_in::ContractIn_TelemetryByHop >&
+ContractIn_Telemetry::msgtelemetrybyhop() const {
+  // @@protoc_insertion_point(field_list:contract_in.ContractIn.Telemetry.msgTelemetryByHop)
+  return msgtelemetrybyhop_;
+}
+
+// -------------------------------------------------------------------
+
 // ContractIn
 
 // optional string time = 1;
@@ -2497,7 +3460,7 @@ inline void ContractIn::set_allocated_time(std::string* time) {
 
 // optional int32 userId = 2;
 inline bool ContractIn::_internal_has_userid() const {
-  bool value = (_has_bits_[0] & 0x00000040u) != 0;
+  bool value = (_has_bits_[0] & 0x00000080u) != 0;
   return value;
 }
 inline bool ContractIn::has_userid() const {
@@ -2505,7 +3468,7 @@ inline bool ContractIn::has_userid() const {
 }
 inline void ContractIn::clear_userid() {
   userid_ = 0;
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000080u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn::_internal_userid() const {
   return userid_;
@@ -2515,7 +3478,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn::userid() const {
   return _internal_userid();
 }
 inline void ContractIn::_internal_set_userid(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _has_bits_[0] |= 0x00000040u;
+  _has_bits_[0] |= 0x00000080u;
   userid_ = value;
 }
 inline void ContractIn::set_userid(::PROTOBUF_NAMESPACE_ID::int32 value) {
@@ -2525,7 +3488,7 @@ inline void ContractIn::set_userid(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // optional int32 relayId = 3;
 inline bool ContractIn::_internal_has_relayid() const {
-  bool value = (_has_bits_[0] & 0x00000080u) != 0;
+  bool value = (_has_bits_[0] & 0x00000100u) != 0;
   return value;
 }
 inline bool ContractIn::has_relayid() const {
@@ -2533,7 +3496,7 @@ inline bool ContractIn::has_relayid() const {
 }
 inline void ContractIn::clear_relayid() {
   relayid_ = 0;
-  _has_bits_[0] &= ~0x00000080u;
+  _has_bits_[0] &= ~0x00000100u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn::_internal_relayid() const {
   return relayid_;
@@ -2543,7 +3506,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int32 ContractIn::relayid() const {
   return _internal_relayid();
 }
 inline void ContractIn::_internal_set_relayid(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _has_bits_[0] |= 0x00000080u;
+  _has_bits_[0] |= 0x00000100u;
   relayid_ = value;
 }
 inline void ContractIn::set_relayid(::PROTOBUF_NAMESPACE_ID::int32 value) {
@@ -2553,7 +3516,7 @@ inline void ContractIn::set_relayid(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // required .contract_in.ContractIn.ContractInPacket contractInPacket = 4;
 inline bool ContractIn::_internal_has_contractinpacket() const {
-  bool value = (_has_bits_[0] & 0x00000100u) != 0;
+  bool value = (_has_bits_[0] & 0x00000200u) != 0;
   return value;
 }
 inline bool ContractIn::has_contractinpacket() const {
@@ -2561,7 +3524,7 @@ inline bool ContractIn::has_contractinpacket() const {
 }
 inline void ContractIn::clear_contractinpacket() {
   contractinpacket_ = 1;
-  _has_bits_[0] &= ~0x00000100u;
+  _has_bits_[0] &= ~0x00000200u;
 }
 inline ::contract_in::ContractIn_ContractInPacket ContractIn::_internal_contractinpacket() const {
   return static_cast< ::contract_in::ContractIn_ContractInPacket >(contractinpacket_);
@@ -2572,7 +3535,7 @@ inline ::contract_in::ContractIn_ContractInPacket ContractIn::contractinpacket()
 }
 inline void ContractIn::_internal_set_contractinpacket(::contract_in::ContractIn_ContractInPacket value) {
   assert(::contract_in::ContractIn_ContractInPacket_IsValid(value));
-  _has_bits_[0] |= 0x00000100u;
+  _has_bits_[0] |= 0x00000200u;
   contractinpacket_ = value;
 }
 inline void ContractIn::set_contractinpacket(::contract_in::ContractIn_ContractInPacket value) {
@@ -2880,9 +3843,73 @@ inline void ContractIn::set_allocated_msgregister(::contract_in::ContractIn_Regi
   // @@protoc_insertion_point(field_set_allocated:contract_in.ContractIn.msgRegister)
 }
 
+// optional .contract_in.ContractIn.Telemetry msgTelemetry = 10;
+inline bool ContractIn::_internal_has_msgtelemetry() const {
+  bool value = (_has_bits_[0] & 0x00000040u) != 0;
+  PROTOBUF_ASSUME(!value || msgtelemetry_ != nullptr);
+  return value;
+}
+inline bool ContractIn::has_msgtelemetry() const {
+  return _internal_has_msgtelemetry();
+}
+inline void ContractIn::clear_msgtelemetry() {
+  if (msgtelemetry_ != nullptr) msgtelemetry_->Clear();
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline const ::contract_in::ContractIn_Telemetry& ContractIn::_internal_msgtelemetry() const {
+  const ::contract_in::ContractIn_Telemetry* p = msgtelemetry_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::contract_in::ContractIn_Telemetry*>(
+      &::contract_in::_ContractIn_Telemetry_default_instance_);
+}
+inline const ::contract_in::ContractIn_Telemetry& ContractIn::msgtelemetry() const {
+  // @@protoc_insertion_point(field_get:contract_in.ContractIn.msgTelemetry)
+  return _internal_msgtelemetry();
+}
+inline ::contract_in::ContractIn_Telemetry* ContractIn::release_msgtelemetry() {
+  // @@protoc_insertion_point(field_release:contract_in.ContractIn.msgTelemetry)
+  _has_bits_[0] &= ~0x00000040u;
+  ::contract_in::ContractIn_Telemetry* temp = msgtelemetry_;
+  msgtelemetry_ = nullptr;
+  return temp;
+}
+inline ::contract_in::ContractIn_Telemetry* ContractIn::_internal_mutable_msgtelemetry() {
+  _has_bits_[0] |= 0x00000040u;
+  if (msgtelemetry_ == nullptr) {
+    auto* p = CreateMaybeMessage<::contract_in::ContractIn_Telemetry>(GetArenaNoVirtual());
+    msgtelemetry_ = p;
+  }
+  return msgtelemetry_;
+}
+inline ::contract_in::ContractIn_Telemetry* ContractIn::mutable_msgtelemetry() {
+  // @@protoc_insertion_point(field_mutable:contract_in.ContractIn.msgTelemetry)
+  return _internal_mutable_msgtelemetry();
+}
+inline void ContractIn::set_allocated_msgtelemetry(::contract_in::ContractIn_Telemetry* msgtelemetry) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete msgtelemetry_;
+  }
+  if (msgtelemetry) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      msgtelemetry = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, msgtelemetry, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000040u;
+  } else {
+    _has_bits_[0] &= ~0x00000040u;
+  }
+  msgtelemetry_ = msgtelemetry;
+  // @@protoc_insertion_point(field_set_allocated:contract_in.ContractIn.msgTelemetry)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -14,6 +14,7 @@ message ContractIn {
 		NOTIFY_STATUS_CONTROLLER = 7;
 		PACKET_IN = 8;
 		REQUEST = 9;
+		TELEMETRY = 10;
 	}
 
 	enum Event {
@@ -56,6 +57,25 @@ message ContractIn {
 		optional Status status = 1;
 		optional Load load = 2;
 	}
+
+	message TelemetryByHop {
+		optional int32 relayId = 1;
+		optional string timeReceived = 2;
+		optional int32 lenQueueMac = 3;
+		optional int32 lenQueueNet = 4;
+		optional int32 packetDropMac = 5;
+		optional int32 packetDropNet = 6;
+		optional string rssi = 7;
+	}
+
+	message Telemetry {
+		optional int32 source = 1;
+		optional int32 destination = 2;
+		optional int32 messageType = 3;
+		optional int32 size = 4;
+		optional int32 idVideo = 5;
+		repeated TelemetryByHop msgTelemetryByHop = 6;
+	}
 	
  	optional string time = 1;
  	optional int32 	userId = 2;
@@ -68,5 +88,6 @@ message ContractIn {
 	optional NotifyStatusRelay msgNotifyStatusRelay = 7;
 	optional Unregister msgUnregister = 8;
 	optional Register msgRegister = 9;
+	optional Telemetry msgTelemetry = 10;
 
 }

@@ -21,6 +21,8 @@ extern PROTOBUF_INTERNAL_EXPORT_contract_5fin_2eproto ::PROTOBUF_NAMESPACE_ID::i
 extern PROTOBUF_INTERNAL_EXPORT_contract_5fin_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ContractIn_NotifyStatusUser_contract_5fin_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_contract_5fin_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_ContractIn_Register_contract_5fin_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_contract_5fin_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ContractIn_Status_contract_5fin_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_contract_5fin_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ContractIn_Telemetry_contract_5fin_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_contract_5fin_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ContractIn_TelemetryByHop_contract_5fin_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_contract_5fin_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ContractIn_Unregister_contract_5fin_2eproto;
 namespace contract_in {
 class ContractIn_LoadDefaultTypeInternal {
@@ -55,6 +57,14 @@ class ContractIn_RegisterDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ContractIn_Register> _instance;
 } _ContractIn_Register_default_instance_;
+class ContractIn_TelemetryByHopDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ContractIn_TelemetryByHop> _instance;
+} _ContractIn_TelemetryByHop_default_instance_;
+class ContractIn_TelemetryDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ContractIn_Telemetry> _instance;
+} _ContractIn_Telemetry_default_instance_;
 class ContractInDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ContractIn> _instance;
@@ -71,13 +81,14 @@ static void InitDefaultsscc_info_ContractIn_contract_5fin_2eproto() {
   ::contract_in::ContractIn::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<5> scc_info_ContractIn_contract_5fin_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 5, 0, InitDefaultsscc_info_ContractIn_contract_5fin_2eproto}, {
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<6> scc_info_ContractIn_contract_5fin_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 6, 0, InitDefaultsscc_info_ContractIn_contract_5fin_2eproto}, {
       &scc_info_ContractIn_NotifyStatusController_contract_5fin_2eproto.base,
       &scc_info_ContractIn_NotifyStatusUser_contract_5fin_2eproto.base,
       &scc_info_ContractIn_NotifyStatusRelay_contract_5fin_2eproto.base,
       &scc_info_ContractIn_Unregister_contract_5fin_2eproto.base,
-      &scc_info_ContractIn_Register_contract_5fin_2eproto.base,}};
+      &scc_info_ContractIn_Register_contract_5fin_2eproto.base,
+      &scc_info_ContractIn_Telemetry_contract_5fin_2eproto.base,}};
 
 static void InitDefaultsscc_info_ContractIn_Load_contract_5fin_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -183,6 +194,35 @@ static void InitDefaultsscc_info_ContractIn_Status_contract_5fin_2eproto() {
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_ContractIn_Status_contract_5fin_2eproto}, {
       &scc_info_ContractIn_Location_contract_5fin_2eproto.base,}};
 
+static void InitDefaultsscc_info_ContractIn_Telemetry_contract_5fin_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::contract_in::_ContractIn_Telemetry_default_instance_;
+    new (ptr) ::contract_in::ContractIn_Telemetry();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::contract_in::ContractIn_Telemetry::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ContractIn_Telemetry_contract_5fin_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_ContractIn_Telemetry_contract_5fin_2eproto}, {
+      &scc_info_ContractIn_TelemetryByHop_contract_5fin_2eproto.base,}};
+
+static void InitDefaultsscc_info_ContractIn_TelemetryByHop_contract_5fin_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::contract_in::_ContractIn_TelemetryByHop_default_instance_;
+    new (ptr) ::contract_in::ContractIn_TelemetryByHop();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::contract_in::ContractIn_TelemetryByHop::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ContractIn_TelemetryByHop_contract_5fin_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ContractIn_TelemetryByHop_contract_5fin_2eproto}, {}};
+
 static void InitDefaultsscc_info_ContractIn_Unregister_contract_5fin_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -197,7 +237,7 @@ static void InitDefaultsscc_info_ContractIn_Unregister_contract_5fin_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ContractIn_Unregister_contract_5fin_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ContractIn_Unregister_contract_5fin_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_contract_5fin_2eproto[9];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_contract_5fin_2eproto[11];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_contract_5fin_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_contract_5fin_2eproto = nullptr;
 
@@ -266,6 +306,42 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_contract_5fin_2eproto::offsets
   PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_Register, load_),
   0,
   1,
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_TelemetryByHop, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_TelemetryByHop, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_TelemetryByHop, relayid_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_TelemetryByHop, timereceived_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_TelemetryByHop, lenqueuemac_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_TelemetryByHop, lenqueuenet_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_TelemetryByHop, packetdropmac_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_TelemetryByHop, packetdropnet_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_TelemetryByHop, rssi_),
+  2,
+  0,
+  3,
+  4,
+  5,
+  6,
+  1,
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_Telemetry, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_Telemetry, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_Telemetry, source_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_Telemetry, destination_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_Telemetry, messagetype_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_Telemetry, size_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_Telemetry, idvideo_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn_Telemetry, msgtelemetrybyhop_),
+  0,
+  1,
+  2,
+  3,
+  4,
+  ~0u,
   PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -280,15 +356,17 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_contract_5fin_2eproto::offsets
   PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn, msgnotifystatusrelay_),
   PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn, msgunregister_),
   PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn, msgregister_),
+  PROTOBUF_FIELD_OFFSET(::contract_in::ContractIn, msgtelemetry_),
   0,
-  6,
   7,
   8,
+  9,
   1,
   2,
   3,
   4,
   5,
+  6,
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 8, sizeof(::contract_in::ContractIn_Load)},
@@ -299,7 +377,9 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 41, 47, sizeof(::contract_in::ContractIn_NotifyStatusRelay)},
   { 48, 54, sizeof(::contract_in::ContractIn_Unregister)},
   { 55, 62, sizeof(::contract_in::ContractIn_Register)},
-  { 64, 78, sizeof(::contract_in::ContractIn)},
+  { 64, 76, sizeof(::contract_in::ContractIn_TelemetryByHop)},
+  { 83, 94, sizeof(::contract_in::ContractIn_Telemetry)},
+  { 100, 115, sizeof(::contract_in::ContractIn)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -311,11 +391,13 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::contract_in::_ContractIn_NotifyStatusRelay_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::contract_in::_ContractIn_Unregister_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::contract_in::_ContractIn_Register_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::contract_in::_ContractIn_TelemetryByHop_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::contract_in::_ContractIn_Telemetry_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::contract_in::_ContractIn_default_instance_),
 };
 
 const char descriptor_table_protodef_contract_5fin_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\021contract_in.proto\022\013contract_in\"\362\t\n\nCon"
+  "\n\021contract_in.proto\022\013contract_in\"\204\r\n\nCon"
   "tractIn\022\014\n\004time\030\001 \001(\t\022\016\n\006userId\030\002 \001(\005\022\017\n"
   "\007relayId\030\003 \001(\005\022B\n\020contractInPacket\030\004 \002(\016"
   "2(.contract_in.ContractIn.ContractInPack"
@@ -327,31 +409,41 @@ const char descriptor_table_protodef_contract_5fin_2eproto[] PROTOBUF_SECTION_VA
   ".ContractIn.NotifyStatusRelay\0229\n\rmsgUnre"
   "gister\030\010 \001(\0132\".contract_in.ContractIn.Un"
   "register\0225\n\013msgRegister\030\t \001(\0132 .contract"
-  "_in.ContractIn.Register\032K\n\004Load\022\033\n\023waitT"
-  "imePacketQueue\030\001 \001(\t\022\022\n\nuserNumber\030\002 \001(\005"
-  "\022\022\n\ndropNumber\030\003 \001(\005\032 \n\010Location\022\t\n\001x\030\001 "
-  "\001(\t\022\t\n\001y\030\002 \001(\t\032<\n\006Status\0222\n\010location\030\001 \001"
-  "(\0132 .contract_in.ContractIn.Location\032H\n\026"
-  "NotifyStatusController\022.\n\006status\030\001 \001(\0132\036"
-  ".contract_in.ContractIn.Status\032B\n\020Notify"
-  "StatusUser\022.\n\006status\030\001 \001(\0132\036.contract_in"
-  ".ContractIn.Status\032C\n\021NotifyStatusRelay\022"
+  "_in.ContractIn.Register\0227\n\014msgTelemetry\030"
+  "\n \001(\0132!.contract_in.ContractIn.Telemetry"
+  "\032K\n\004Load\022\033\n\023waitTimePacketQueue\030\001 \001(\t\022\022\n"
+  "\nuserNumber\030\002 \001(\005\022\022\n\ndropNumber\030\003 \001(\005\032 \n"
+  "\010Location\022\t\n\001x\030\001 \001(\t\022\t\n\001y\030\002 \001(\t\032<\n\006Statu"
+  "s\0222\n\010location\030\001 \001(\0132 .contract_in.Contra"
+  "ctIn.Location\032H\n\026NotifyStatusController\022"
   ".\n\006status\030\001 \001(\0132\036.contract_in.ContractIn"
-  ".Status\032:\n\nUnregister\022,\n\005event\030\001 \001(\0162\035.c"
-  "ontract_in.ContractIn.Event\032f\n\010Register\022"
-  ".\n\006status\030\001 \001(\0132\036.contract_in.ContractIn"
-  ".Status\022*\n\004load\030\002 \001(\0132\034.contract_in.Cont"
-  "ractIn.Load\"\324\001\n\020ContractInPacket\022\023\n\017UNRE"
-  "GISTER_USER\020\001\022\027\n\023NOTIFY_STATUS_RELAY\020\002\022\022"
-  "\n\016REGISTER_RELAY\020\003\022\026\n\022NOTIFY_STATUS_USER"
-  "\020\004\022\021\n\rREGISTER_USER\020\005\022\031\n\025REFRESH_REGISTE"
-  "R_USER\020\006\022\034\n\030NOTIFY_STATUS_CONTROLLER\020\007\022\r"
-  "\n\tPACKET_IN\020\010\022\013\n\007REQUEST\020\t\"!\n\005Event\022\n\n\006F"
-  "ORCED\020\001\022\014\n\010REQUIRED\020\002"
+  ".Status\032B\n\020NotifyStatusUser\022.\n\006status\030\001 "
+  "\001(\0132\036.contract_in.ContractIn.Status\032C\n\021N"
+  "otifyStatusRelay\022.\n\006status\030\001 \001(\0132\036.contr"
+  "act_in.ContractIn.Status\032:\n\nUnregister\022,"
+  "\n\005event\030\001 \001(\0162\035.contract_in.ContractIn.E"
+  "vent\032f\n\010Register\022.\n\006status\030\001 \001(\0132\036.contr"
+  "act_in.ContractIn.Status\022*\n\004load\030\002 \001(\0132\034"
+  ".contract_in.ContractIn.Load\032\235\001\n\016Telemet"
+  "ryByHop\022\017\n\007relayId\030\001 \001(\005\022\024\n\014timeReceived"
+  "\030\002 \001(\t\022\023\n\013lenQueueMac\030\003 \001(\005\022\023\n\013lenQueueN"
+  "et\030\004 \001(\005\022\025\n\rpacketDropMac\030\005 \001(\005\022\025\n\rpacke"
+  "tDropNet\030\006 \001(\005\022\014\n\004rssi\030\007 \001(\t\032\247\001\n\tTelemet"
+  "ry\022\016\n\006source\030\001 \001(\005\022\023\n\013destination\030\002 \001(\005\022"
+  "\023\n\013messageType\030\003 \001(\005\022\014\n\004size\030\004 \001(\005\022\017\n\007id"
+  "Video\030\005 \001(\005\022A\n\021msgTelemetryByHop\030\006 \003(\0132&"
+  ".contract_in.ContractIn.TelemetryByHop\"\343"
+  "\001\n\020ContractInPacket\022\023\n\017UNREGISTER_USER\020\001"
+  "\022\027\n\023NOTIFY_STATUS_RELAY\020\002\022\022\n\016REGISTER_RE"
+  "LAY\020\003\022\026\n\022NOTIFY_STATUS_USER\020\004\022\021\n\rREGISTE"
+  "R_USER\020\005\022\031\n\025REFRESH_REGISTER_USER\020\006\022\034\n\030N"
+  "OTIFY_STATUS_CONTROLLER\020\007\022\r\n\tPACKET_IN\020\010"
+  "\022\013\n\007REQUEST\020\t\022\r\n\tTELEMETRY\020\n\"!\n\005Event\022\n\n"
+  "\006FORCED\020\001\022\014\n\010REQUIRED\020\002"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_contract_5fin_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_contract_5fin_2eproto_sccs[9] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_contract_5fin_2eproto_sccs[11] = {
   &scc_info_ContractIn_contract_5fin_2eproto.base,
   &scc_info_ContractIn_Load_contract_5fin_2eproto.base,
   &scc_info_ContractIn_Location_contract_5fin_2eproto.base,
@@ -360,15 +452,17 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_con
   &scc_info_ContractIn_NotifyStatusUser_contract_5fin_2eproto.base,
   &scc_info_ContractIn_Register_contract_5fin_2eproto.base,
   &scc_info_ContractIn_Status_contract_5fin_2eproto.base,
+  &scc_info_ContractIn_Telemetry_contract_5fin_2eproto.base,
+  &scc_info_ContractIn_TelemetryByHop_contract_5fin_2eproto.base,
   &scc_info_ContractIn_Unregister_contract_5fin_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_contract_5fin_2eproto_once;
 static bool descriptor_table_contract_5fin_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_contract_5fin_2eproto = {
-  &descriptor_table_contract_5fin_2eproto_initialized, descriptor_table_protodef_contract_5fin_2eproto, "contract_in.proto", 1301,
-  &descriptor_table_contract_5fin_2eproto_once, descriptor_table_contract_5fin_2eproto_sccs, descriptor_table_contract_5fin_2eproto_deps, 9, 0,
+  &descriptor_table_contract_5fin_2eproto_initialized, descriptor_table_protodef_contract_5fin_2eproto, "contract_in.proto", 1703,
+  &descriptor_table_contract_5fin_2eproto_once, descriptor_table_contract_5fin_2eproto_sccs, descriptor_table_contract_5fin_2eproto_deps, 11, 0,
   schemas, file_default_instances, TableStruct_contract_5fin_2eproto::offsets,
-  file_level_metadata_contract_5fin_2eproto, 9, file_level_enum_descriptors_contract_5fin_2eproto, file_level_service_descriptors_contract_5fin_2eproto,
+  file_level_metadata_contract_5fin_2eproto, 11, file_level_enum_descriptors_contract_5fin_2eproto, file_level_service_descriptors_contract_5fin_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -389,6 +483,7 @@ bool ContractIn_ContractInPacket_IsValid(int value) {
     case 7:
     case 8:
     case 9:
+    case 10:
       return true;
     default:
       return false;
@@ -405,6 +500,7 @@ constexpr ContractIn_ContractInPacket ContractIn::REFRESH_REGISTER_USER;
 constexpr ContractIn_ContractInPacket ContractIn::NOTIFY_STATUS_CONTROLLER;
 constexpr ContractIn_ContractInPacket ContractIn::PACKET_IN;
 constexpr ContractIn_ContractInPacket ContractIn::REQUEST;
+constexpr ContractIn_ContractInPacket ContractIn::TELEMETRY;
 constexpr ContractIn_ContractInPacket ContractIn::ContractInPacket_MIN;
 constexpr ContractIn_ContractInPacket ContractIn::ContractInPacket_MAX;
 constexpr int ContractIn::ContractInPacket_ARRAYSIZE;
@@ -2314,6 +2410,775 @@ void ContractIn_Register::InternalSwap(ContractIn_Register* other) {
 
 // ===================================================================
 
+void ContractIn_TelemetryByHop::InitAsDefaultInstance() {
+}
+class ContractIn_TelemetryByHop::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ContractIn_TelemetryByHop>()._has_bits_);
+  static void set_has_relayid(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static void set_has_timereceived(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_lenqueuemac(HasBits* has_bits) {
+    (*has_bits)[0] |= 8u;
+  }
+  static void set_has_lenqueuenet(HasBits* has_bits) {
+    (*has_bits)[0] |= 16u;
+  }
+  static void set_has_packetdropmac(HasBits* has_bits) {
+    (*has_bits)[0] |= 32u;
+  }
+  static void set_has_packetdropnet(HasBits* has_bits) {
+    (*has_bits)[0] |= 64u;
+  }
+  static void set_has_rssi(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+};
+
+ContractIn_TelemetryByHop::ContractIn_TelemetryByHop()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:contract_in.ContractIn.TelemetryByHop)
+}
+ContractIn_TelemetryByHop::ContractIn_TelemetryByHop(const ContractIn_TelemetryByHop& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr),
+      _has_bits_(from._has_bits_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  timereceived_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from._internal_has_timereceived()) {
+    timereceived_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.timereceived_);
+  }
+  rssi_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from._internal_has_rssi()) {
+    rssi_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.rssi_);
+  }
+  ::memcpy(&relayid_, &from.relayid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&packetdropnet_) -
+    reinterpret_cast<char*>(&relayid_)) + sizeof(packetdropnet_));
+  // @@protoc_insertion_point(copy_constructor:contract_in.ContractIn.TelemetryByHop)
+}
+
+void ContractIn_TelemetryByHop::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ContractIn_TelemetryByHop_contract_5fin_2eproto.base);
+  timereceived_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  rssi_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&relayid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&packetdropnet_) -
+      reinterpret_cast<char*>(&relayid_)) + sizeof(packetdropnet_));
+}
+
+ContractIn_TelemetryByHop::~ContractIn_TelemetryByHop() {
+  // @@protoc_insertion_point(destructor:contract_in.ContractIn.TelemetryByHop)
+  SharedDtor();
+}
+
+void ContractIn_TelemetryByHop::SharedDtor() {
+  timereceived_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  rssi_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void ContractIn_TelemetryByHop::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ContractIn_TelemetryByHop& ContractIn_TelemetryByHop::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ContractIn_TelemetryByHop_contract_5fin_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void ContractIn_TelemetryByHop::Clear() {
+// @@protoc_insertion_point(message_clear_start:contract_in.ContractIn.TelemetryByHop)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      timereceived_.ClearNonDefaultToEmptyNoArena();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      rssi_.ClearNonDefaultToEmptyNoArena();
+    }
+  }
+  if (cached_has_bits & 0x0000007cu) {
+    ::memset(&relayid_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&packetdropnet_) -
+        reinterpret_cast<char*>(&relayid_)) + sizeof(packetdropnet_));
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear();
+}
+
+const char* ContractIn_TelemetryByHop::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // optional int32 relayId = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          _Internal::set_has_relayid(&has_bits);
+          relayid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional string timeReceived = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8Verify(_internal_mutable_timereceived(), ptr, ctx, "contract_in.ContractIn.TelemetryByHop.timeReceived");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional int32 lenQueueMac = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          _Internal::set_has_lenqueuemac(&has_bits);
+          lenqueuemac_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional int32 lenQueueNet = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          _Internal::set_has_lenqueuenet(&has_bits);
+          lenqueuenet_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional int32 packetDropMac = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          _Internal::set_has_packetdropmac(&has_bits);
+          packetdropmac_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional int32 packetDropNet = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          _Internal::set_has_packetdropnet(&has_bits);
+          packetdropnet_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional string rssi = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParserUTF8Verify(_internal_mutable_rssi(), ptr, ctx, "contract_in.ContractIn.TelemetryByHop.rssi");
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ContractIn_TelemetryByHop::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:contract_in.ContractIn.TelemetryByHop)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  // optional int32 relayId = 1;
+  if (cached_has_bits & 0x00000004u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_relayid(), target);
+  }
+
+  // optional string timeReceived = 2;
+  if (cached_has_bits & 0x00000001u) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->_internal_timereceived().data(), static_cast<int>(this->_internal_timereceived().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SERIALIZE,
+      "contract_in.ContractIn.TelemetryByHop.timeReceived");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_timereceived(), target);
+  }
+
+  // optional int32 lenQueueMac = 3;
+  if (cached_has_bits & 0x00000008u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_lenqueuemac(), target);
+  }
+
+  // optional int32 lenQueueNet = 4;
+  if (cached_has_bits & 0x00000010u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->_internal_lenqueuenet(), target);
+  }
+
+  // optional int32 packetDropMac = 5;
+  if (cached_has_bits & 0x00000020u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(5, this->_internal_packetdropmac(), target);
+  }
+
+  // optional int32 packetDropNet = 6;
+  if (cached_has_bits & 0x00000040u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(6, this->_internal_packetdropnet(), target);
+  }
+
+  // optional string rssi = 7;
+  if (cached_has_bits & 0x00000002u) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->_internal_rssi().data(), static_cast<int>(this->_internal_rssi().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SERIALIZE,
+      "contract_in.ContractIn.TelemetryByHop.rssi");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_rssi(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:contract_in.ContractIn.TelemetryByHop)
+  return target;
+}
+
+size_t ContractIn_TelemetryByHop::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:contract_in.ContractIn.TelemetryByHop)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x0000007fu) {
+    // optional string timeReceived = 2;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_timereceived());
+    }
+
+    // optional string rssi = 7;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_rssi());
+    }
+
+    // optional int32 relayId = 1;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_relayid());
+    }
+
+    // optional int32 lenQueueMac = 3;
+    if (cached_has_bits & 0x00000008u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_lenqueuemac());
+    }
+
+    // optional int32 lenQueueNet = 4;
+    if (cached_has_bits & 0x00000010u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_lenqueuenet());
+    }
+
+    // optional int32 packetDropMac = 5;
+    if (cached_has_bits & 0x00000020u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_packetdropmac());
+    }
+
+    // optional int32 packetDropNet = 6;
+    if (cached_has_bits & 0x00000040u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_packetdropnet());
+    }
+
+  }
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ContractIn_TelemetryByHop::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:contract_in.ContractIn.TelemetryByHop)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ContractIn_TelemetryByHop* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ContractIn_TelemetryByHop>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:contract_in.ContractIn.TelemetryByHop)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:contract_in.ContractIn.TelemetryByHop)
+    MergeFrom(*source);
+  }
+}
+
+void ContractIn_TelemetryByHop::MergeFrom(const ContractIn_TelemetryByHop& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:contract_in.ContractIn.TelemetryByHop)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 0x0000007fu) {
+    if (cached_has_bits & 0x00000001u) {
+      _has_bits_[0] |= 0x00000001u;
+      timereceived_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.timereceived_);
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _has_bits_[0] |= 0x00000002u;
+      rssi_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.rssi_);
+    }
+    if (cached_has_bits & 0x00000004u) {
+      relayid_ = from.relayid_;
+    }
+    if (cached_has_bits & 0x00000008u) {
+      lenqueuemac_ = from.lenqueuemac_;
+    }
+    if (cached_has_bits & 0x00000010u) {
+      lenqueuenet_ = from.lenqueuenet_;
+    }
+    if (cached_has_bits & 0x00000020u) {
+      packetdropmac_ = from.packetdropmac_;
+    }
+    if (cached_has_bits & 0x00000040u) {
+      packetdropnet_ = from.packetdropnet_;
+    }
+    _has_bits_[0] |= cached_has_bits;
+  }
+}
+
+void ContractIn_TelemetryByHop::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:contract_in.ContractIn.TelemetryByHop)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ContractIn_TelemetryByHop::CopyFrom(const ContractIn_TelemetryByHop& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:contract_in.ContractIn.TelemetryByHop)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ContractIn_TelemetryByHop::IsInitialized() const {
+  return true;
+}
+
+void ContractIn_TelemetryByHop::InternalSwap(ContractIn_TelemetryByHop* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  timereceived_.Swap(&other->timereceived_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  rssi_.Swap(&other->rssi_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(relayid_, other->relayid_);
+  swap(lenqueuemac_, other->lenqueuemac_);
+  swap(lenqueuenet_, other->lenqueuenet_);
+  swap(packetdropmac_, other->packetdropmac_);
+  swap(packetdropnet_, other->packetdropnet_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ContractIn_TelemetryByHop::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void ContractIn_Telemetry::InitAsDefaultInstance() {
+}
+class ContractIn_Telemetry::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ContractIn_Telemetry>()._has_bits_);
+  static void set_has_source(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_destination(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static void set_has_messagetype(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static void set_has_size(HasBits* has_bits) {
+    (*has_bits)[0] |= 8u;
+  }
+  static void set_has_idvideo(HasBits* has_bits) {
+    (*has_bits)[0] |= 16u;
+  }
+};
+
+ContractIn_Telemetry::ContractIn_Telemetry()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:contract_in.ContractIn.Telemetry)
+}
+ContractIn_Telemetry::ContractIn_Telemetry(const ContractIn_Telemetry& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr),
+      _has_bits_(from._has_bits_),
+      msgtelemetrybyhop_(from.msgtelemetrybyhop_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&source_, &from.source_,
+    static_cast<size_t>(reinterpret_cast<char*>(&idvideo_) -
+    reinterpret_cast<char*>(&source_)) + sizeof(idvideo_));
+  // @@protoc_insertion_point(copy_constructor:contract_in.ContractIn.Telemetry)
+}
+
+void ContractIn_Telemetry::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ContractIn_Telemetry_contract_5fin_2eproto.base);
+  ::memset(&source_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&idvideo_) -
+      reinterpret_cast<char*>(&source_)) + sizeof(idvideo_));
+}
+
+ContractIn_Telemetry::~ContractIn_Telemetry() {
+  // @@protoc_insertion_point(destructor:contract_in.ContractIn.Telemetry)
+  SharedDtor();
+}
+
+void ContractIn_Telemetry::SharedDtor() {
+}
+
+void ContractIn_Telemetry::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ContractIn_Telemetry& ContractIn_Telemetry::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ContractIn_Telemetry_contract_5fin_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void ContractIn_Telemetry::Clear() {
+// @@protoc_insertion_point(message_clear_start:contract_in.ContractIn.Telemetry)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  msgtelemetrybyhop_.Clear();
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x0000001fu) {
+    ::memset(&source_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&idvideo_) -
+        reinterpret_cast<char*>(&source_)) + sizeof(idvideo_));
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear();
+}
+
+const char* ContractIn_Telemetry::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // optional int32 source = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          _Internal::set_has_source(&has_bits);
+          source_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional int32 destination = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          _Internal::set_has_destination(&has_bits);
+          destination_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional int32 messageType = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          _Internal::set_has_messagetype(&has_bits);
+          messagetype_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional int32 size = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          _Internal::set_has_size(&has_bits);
+          size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // optional int32 idVideo = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          _Internal::set_has_idvideo(&has_bits);
+          idvideo_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated .contract_in.ContractIn.TelemetryByHop msgTelemetryByHop = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_msgtelemetrybyhop(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ContractIn_Telemetry::InternalSerializeWithCachedSizesToArray(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:contract_in.ContractIn.Telemetry)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = _has_bits_[0];
+  // optional int32 source = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_source(), target);
+  }
+
+  // optional int32 destination = 2;
+  if (cached_has_bits & 0x00000002u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_destination(), target);
+  }
+
+  // optional int32 messageType = 3;
+  if (cached_has_bits & 0x00000004u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_messagetype(), target);
+  }
+
+  // optional int32 size = 4;
+  if (cached_has_bits & 0x00000008u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->_internal_size(), target);
+  }
+
+  // optional int32 idVideo = 5;
+  if (cached_has_bits & 0x00000010u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(5, this->_internal_idvideo(), target);
+  }
+
+  // repeated .contract_in.ContractIn.TelemetryByHop msgTelemetryByHop = 6;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_msgtelemetrybyhop_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(6, this->_internal_msgtelemetrybyhop(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:contract_in.ContractIn.Telemetry)
+  return target;
+}
+
+size_t ContractIn_Telemetry::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:contract_in.ContractIn.Telemetry)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .contract_in.ContractIn.TelemetryByHop msgTelemetryByHop = 6;
+  total_size += 1UL * this->_internal_msgtelemetrybyhop_size();
+  for (const auto& msg : this->msgtelemetrybyhop_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x0000001fu) {
+    // optional int32 source = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_source());
+    }
+
+    // optional int32 destination = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_destination());
+    }
+
+    // optional int32 messageType = 3;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_messagetype());
+    }
+
+    // optional int32 size = 4;
+    if (cached_has_bits & 0x00000008u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_size());
+    }
+
+    // optional int32 idVideo = 5;
+    if (cached_has_bits & 0x00000010u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+          this->_internal_idvideo());
+    }
+
+  }
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ContractIn_Telemetry::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:contract_in.ContractIn.Telemetry)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ContractIn_Telemetry* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ContractIn_Telemetry>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:contract_in.ContractIn.Telemetry)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:contract_in.ContractIn.Telemetry)
+    MergeFrom(*source);
+  }
+}
+
+void ContractIn_Telemetry::MergeFrom(const ContractIn_Telemetry& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:contract_in.ContractIn.Telemetry)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  msgtelemetrybyhop_.MergeFrom(from.msgtelemetrybyhop_);
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 0x0000001fu) {
+    if (cached_has_bits & 0x00000001u) {
+      source_ = from.source_;
+    }
+    if (cached_has_bits & 0x00000002u) {
+      destination_ = from.destination_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      messagetype_ = from.messagetype_;
+    }
+    if (cached_has_bits & 0x00000008u) {
+      size_ = from.size_;
+    }
+    if (cached_has_bits & 0x00000010u) {
+      idvideo_ = from.idvideo_;
+    }
+    _has_bits_[0] |= cached_has_bits;
+  }
+}
+
+void ContractIn_Telemetry::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:contract_in.ContractIn.Telemetry)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ContractIn_Telemetry::CopyFrom(const ContractIn_Telemetry& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:contract_in.ContractIn.Telemetry)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ContractIn_Telemetry::IsInitialized() const {
+  return true;
+}
+
+void ContractIn_Telemetry::InternalSwap(ContractIn_Telemetry* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  msgtelemetrybyhop_.InternalSwap(&other->msgtelemetrybyhop_);
+  swap(source_, other->source_);
+  swap(destination_, other->destination_);
+  swap(messagetype_, other->messagetype_);
+  swap(size_, other->size_);
+  swap(idvideo_, other->idvideo_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ContractIn_Telemetry::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
 void ContractIn::InitAsDefaultInstance() {
   ::contract_in::_ContractIn_default_instance_._instance.get_mutable()->msgnotifystatuscontroller_ = const_cast< ::contract_in::ContractIn_NotifyStatusController*>(
       ::contract_in::ContractIn_NotifyStatusController::internal_default_instance());
@@ -2325,6 +3190,8 @@ void ContractIn::InitAsDefaultInstance() {
       ::contract_in::ContractIn_Unregister::internal_default_instance());
   ::contract_in::_ContractIn_default_instance_._instance.get_mutable()->msgregister_ = const_cast< ::contract_in::ContractIn_Register*>(
       ::contract_in::ContractIn_Register::internal_default_instance());
+  ::contract_in::_ContractIn_default_instance_._instance.get_mutable()->msgtelemetry_ = const_cast< ::contract_in::ContractIn_Telemetry*>(
+      ::contract_in::ContractIn_Telemetry::internal_default_instance());
 }
 class ContractIn::_Internal {
  public:
@@ -2333,13 +3200,13 @@ class ContractIn::_Internal {
     (*has_bits)[0] |= 1u;
   }
   static void set_has_userid(HasBits* has_bits) {
-    (*has_bits)[0] |= 64u;
-  }
-  static void set_has_relayid(HasBits* has_bits) {
     (*has_bits)[0] |= 128u;
   }
-  static void set_has_contractinpacket(HasBits* has_bits) {
+  static void set_has_relayid(HasBits* has_bits) {
     (*has_bits)[0] |= 256u;
+  }
+  static void set_has_contractinpacket(HasBits* has_bits) {
+    (*has_bits)[0] |= 512u;
   }
   static const ::contract_in::ContractIn_NotifyStatusController& msgnotifystatuscontroller(const ContractIn* msg);
   static void set_has_msgnotifystatuscontroller(HasBits* has_bits) {
@@ -2360,6 +3227,10 @@ class ContractIn::_Internal {
   static const ::contract_in::ContractIn_Register& msgregister(const ContractIn* msg);
   static void set_has_msgregister(HasBits* has_bits) {
     (*has_bits)[0] |= 32u;
+  }
+  static const ::contract_in::ContractIn_Telemetry& msgtelemetry(const ContractIn* msg);
+  static void set_has_msgtelemetry(HasBits* has_bits) {
+    (*has_bits)[0] |= 64u;
   }
 };
 
@@ -2382,6 +3253,10 @@ ContractIn::_Internal::msgunregister(const ContractIn* msg) {
 const ::contract_in::ContractIn_Register&
 ContractIn::_Internal::msgregister(const ContractIn* msg) {
   return *msg->msgregister_;
+}
+const ::contract_in::ContractIn_Telemetry&
+ContractIn::_Internal::msgtelemetry(const ContractIn* msg) {
+  return *msg->msgtelemetry_;
 }
 ContractIn::ContractIn()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
@@ -2422,6 +3297,11 @@ ContractIn::ContractIn(const ContractIn& from)
   } else {
     msgregister_ = nullptr;
   }
+  if (from._internal_has_msgtelemetry()) {
+    msgtelemetry_ = new ::contract_in::ContractIn_Telemetry(*from.msgtelemetry_);
+  } else {
+    msgtelemetry_ = nullptr;
+  }
   ::memcpy(&userid_, &from.userid_,
     static_cast<size_t>(reinterpret_cast<char*>(&contractinpacket_) -
     reinterpret_cast<char*>(&userid_)) + sizeof(contractinpacket_));
@@ -2449,6 +3329,7 @@ void ContractIn::SharedDtor() {
   if (this != internal_default_instance()) delete msgnotifystatusrelay_;
   if (this != internal_default_instance()) delete msgunregister_;
   if (this != internal_default_instance()) delete msgregister_;
+  if (this != internal_default_instance()) delete msgtelemetry_;
 }
 
 void ContractIn::SetCachedSize(int size) const {
@@ -2467,7 +3348,7 @@ void ContractIn::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x0000003fu) {
+  if (cached_has_bits & 0x0000007fu) {
     if (cached_has_bits & 0x00000001u) {
       time_.ClearNonDefaultToEmptyNoArena();
     }
@@ -2491,13 +3372,16 @@ void ContractIn::Clear() {
       GOOGLE_DCHECK(msgregister_ != nullptr);
       msgregister_->Clear();
     }
+    if (cached_has_bits & 0x00000040u) {
+      GOOGLE_DCHECK(msgtelemetry_ != nullptr);
+      msgtelemetry_->Clear();
+    }
   }
-  if (cached_has_bits & 0x000000c0u) {
-    ::memset(&userid_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&relayid_) -
-        reinterpret_cast<char*>(&userid_)) + sizeof(relayid_));
+  userid_ = 0;
+  if (cached_has_bits & 0x00000300u) {
+    relayid_ = 0;
+    contractinpacket_ = 1;
   }
-  contractinpacket_ = 1;
   _has_bits_.Clear();
   _internal_metadata_.Clear();
 }
@@ -2580,6 +3464,13 @@ const char* ContractIn::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
+      // optional .contract_in.ContractIn.Telemetry msgTelemetry = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
+          ptr = ctx->ParseMessage(_internal_mutable_msgtelemetry(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
@@ -2619,19 +3510,19 @@ failure:
   }
 
   // optional int32 userId = 2;
-  if (cached_has_bits & 0x00000040u) {
+  if (cached_has_bits & 0x00000080u) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_userid(), target);
   }
 
   // optional int32 relayId = 3;
-  if (cached_has_bits & 0x00000080u) {
+  if (cached_has_bits & 0x00000100u) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_relayid(), target);
   }
 
   // required .contract_in.ContractIn.ContractInPacket contractInPacket = 4;
-  if (cached_has_bits & 0x00000100u) {
+  if (cached_has_bits & 0x00000200u) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       4, this->_internal_contractinpacket(), target);
@@ -2675,6 +3566,14 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessageToArray(
         9, _Internal::msgregister(this), target, stream);
+  }
+
+  // optional .contract_in.ContractIn.Telemetry msgTelemetry = 10;
+  if (cached_has_bits & 0x00000040u) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        10, _Internal::msgtelemetry(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2742,21 +3641,28 @@ size_t ContractIn::ByteSizeLong() const {
           *msgregister_);
     }
 
-    // optional int32 userId = 2;
+    // optional .contract_in.ContractIn.Telemetry msgTelemetry = 10;
     if (cached_has_bits & 0x00000040u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *msgtelemetry_);
+    }
+
+    // optional int32 userId = 2;
+    if (cached_has_bits & 0x00000080u) {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
           this->_internal_userid());
     }
 
-    // optional int32 relayId = 3;
-    if (cached_has_bits & 0x00000080u) {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-          this->_internal_relayid());
-    }
-
   }
+  // optional int32 relayId = 3;
+  if (cached_has_bits & 0x00000100u) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_relayid());
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -2810,15 +3716,21 @@ void ContractIn::MergeFrom(const ContractIn& from) {
       _internal_mutable_msgregister()->::contract_in::ContractIn_Register::MergeFrom(from._internal_msgregister());
     }
     if (cached_has_bits & 0x00000040u) {
-      userid_ = from.userid_;
+      _internal_mutable_msgtelemetry()->::contract_in::ContractIn_Telemetry::MergeFrom(from._internal_msgtelemetry());
     }
     if (cached_has_bits & 0x00000080u) {
-      relayid_ = from.relayid_;
+      userid_ = from.userid_;
     }
     _has_bits_[0] |= cached_has_bits;
   }
-  if (cached_has_bits & 0x00000100u) {
-    _internal_set_contractinpacket(from._internal_contractinpacket());
+  if (cached_has_bits & 0x00000300u) {
+    if (cached_has_bits & 0x00000100u) {
+      relayid_ = from.relayid_;
+    }
+    if (cached_has_bits & 0x00000200u) {
+      contractinpacket_ = from.contractinpacket_;
+    }
+    _has_bits_[0] |= cached_has_bits;
   }
 }
 
@@ -2837,7 +3749,7 @@ void ContractIn::CopyFrom(const ContractIn& from) {
 }
 
 bool ContractIn::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000100) != 0x00000100) return false;
+  if ((_has_bits_[0] & 0x00000200) != 0x00000200) return false;
   return true;
 }
 
@@ -2852,6 +3764,7 @@ void ContractIn::InternalSwap(ContractIn* other) {
   swap(msgnotifystatusrelay_, other->msgnotifystatusrelay_);
   swap(msgunregister_, other->msgunregister_);
   swap(msgregister_, other->msgregister_);
+  swap(msgtelemetry_, other->msgtelemetry_);
   swap(userid_, other->userid_);
   swap(relayid_, other->relayid_);
   swap(contractinpacket_, other->contractinpacket_);
@@ -2888,6 +3801,12 @@ template<> PROTOBUF_NOINLINE ::contract_in::ContractIn_Unregister* Arena::Create
 }
 template<> PROTOBUF_NOINLINE ::contract_in::ContractIn_Register* Arena::CreateMaybeMessage< ::contract_in::ContractIn_Register >(Arena* arena) {
   return Arena::CreateInternal< ::contract_in::ContractIn_Register >(arena);
+}
+template<> PROTOBUF_NOINLINE ::contract_in::ContractIn_TelemetryByHop* Arena::CreateMaybeMessage< ::contract_in::ContractIn_TelemetryByHop >(Arena* arena) {
+  return Arena::CreateInternal< ::contract_in::ContractIn_TelemetryByHop >(arena);
+}
+template<> PROTOBUF_NOINLINE ::contract_in::ContractIn_Telemetry* Arena::CreateMaybeMessage< ::contract_in::ContractIn_Telemetry >(Arena* arena) {
+  return Arena::CreateInternal< ::contract_in::ContractIn_Telemetry >(arena);
 }
 template<> PROTOBUF_NOINLINE ::contract_in::ContractIn* Arena::CreateMaybeMessage< ::contract_in::ContractIn >(Arena* arena) {
   return Arena::CreateInternal< ::contract_in::ContractIn >(arena);
