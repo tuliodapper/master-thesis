@@ -141,6 +141,7 @@ struct SDNTelemetry {
 	int destination;
 	int messageType;
 	int size;
+	int idVideo;
 
 	int lenMsgTelemetryByHop = 0;
 	SDNTelemetryByHop msgTelemetryByHop[50];
