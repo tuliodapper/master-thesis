@@ -34,6 +34,7 @@ def getConfig(scenario):
 	config["TIMEOUT_HELLO"] = 0.5 # TO DO
 	config["TIMEOUT_CHECK"] = 0.5 # TO DO
 	config["TIMEOUT_REFRESH"] = 0.5 # TO DO
+	config["TIMEOUT_BEACON"] = 0.5 # TO DO
 	config["updateInterval"] = 0.1
 	config["speedControllerNode"] = 20.0 # m/s
 	config["speedRelayNode"] = 20.0 # m/s
@@ -401,12 +402,15 @@ def getConfig(scenario):
 
 	# SDN
 	configSDN = copy.copy(config)
-	configSDN["name"] 		= "SDN"
-	configSDN["energyControllerNode"] = 3744000
-	configSDN["simpath"] 	= configSDN["rootpath"] + "M3WSN/Simulations/SDN/"
-	configSDN["savepath"] 	= root + "/results/SDN/"
-	configSDN["simfilestd"] = root + "/sim-config-SDN.ini"
-	configSDN["loadpath"] 	= root + "/"
+	configSDN["name"] 					= "SDN"
+	configSDN["energyControllerNode"] 	= 3744000
+	configSDN["simpath"] 				= configSDN["rootpath"] + "M3WSN/Simulations/SDN/"
+	configSDN["savepath"] 				= root + "/results/SDN/"
+	configSDN["simfilestd"] 			= root + "/sim-config-SDN.ini"
+	configSDN["loadpath"] 				= root + "/"
+	configSDN["manageRouting"] 			= "false"
+	configSDN["sendTelemetry"] 			= "false"
+	configSDN["sendBeacon"] 			= "true"
 
 	## AODV
 	configAODV = copy.copy(config)
@@ -421,7 +425,7 @@ def getConfig(scenario):
 
 def Run():
 
-	N 				= 10
+	N 				= 1
 	list_scenario 	= [8]
 
 	i = 0

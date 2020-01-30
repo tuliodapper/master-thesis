@@ -16,6 +16,9 @@ parameters:
 	double 	TIMEOUT_CHECK 			= default (0.1);
 	double 	TIMEOUT_REFRESH 		= default (0.1);
 	double 	TIMEOUT_STATUS 			= default (0.1);
+	double 	TIMEOUT_BEACON			= default (0.1);
+	
+	bool 	sendBeacon				= default (false);
 gates:
 	output	toCommunicationModule;
 	output	toMacModule;

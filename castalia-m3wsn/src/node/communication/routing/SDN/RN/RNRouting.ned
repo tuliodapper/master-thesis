@@ -21,6 +21,11 @@ parameters:
 	double 	TIMEOUT_NOTIFY_USER 	= default (0.1);
 	double 	TIMEOUT_STATUS 			= default (0.1);
 	double 	TIMEOUT_TELEMETRY		= default (0.01);
+	double 	TIMEOUT_BEACON			= default (0.1);
+
+	bool 	sendTelemetry 			= default (true);	// number of messages
+	bool 	sendBeacon				= default (false);
+	
 gates:
 	output	toCommunicationModule;
 	output	toMacModule;
