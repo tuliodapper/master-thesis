@@ -290,6 +290,63 @@ void CNRouting::fromMacTelemetry(SDNRoutingPacket * netPacket){
     newTrace(getTraceTelemetry(netPacket));
     newOutput(getOutputTelemetry(netPacket));
 
+    contractIn_t::Telemetry * msgTelemetry = new contractIn_t::Telemetry;
+	msgTelemetry->set_source(1+netPacket->getMsgTelemetry().source);
+	msgTelemetry->set_destination(1+netPacket->getMsgTelemetry().destination);
+	msgTelemetry->set_messagetype(1+netPacket->getMsgTelemetry().messageType);
+	msgTelemetry->set_size(1+netPacket->getMsgTelemetry().size);
+	msgTelemetry->set_idvideo(1+netPacket->getMsgTelemetry().idVideo);
+
+    for (int i=0; i < netPacket->getMsgTelemetry().lenMsgTelemetryByHop; ++i) {
+    	contractIn_t::TelemetryByHop * msgTelemetryByHop = msgTelemetry->add_msgtelemetrybyhop();
+        msgTelemetryByHop->set_relayid(1+netPacket->getMsgTelemetry().msgTelemetryByHop[i].relayId);
+        msgTelemetryByHop->set_timereceived(to_string(netPacket->getMsgTelemetry().msgTelemetryByHop[i].timeReceived));
+        msgTelemetryByHop->set_lenqueuemac(1+netPacket->getMsgTelemetry().msgTelemetryByHop[i].lenQueueMac);
+        msgTelemetryByHop->set_lenqueuenet(1+netPacket->getMsgTelemetry().msgTelemetryByHop[i].lenQueueNet);
+        msgTelemetryByHop->set_packetdropmac(1+netPacket->getMsgTelemetry().msgTelemetryByHop[i].packetDropMac);
+        msgTelemetryByHop->set_packetdropnet(1+netPacket->getMsgTelemetry().msgTelemetryByHop[i].packetDropNet);
+        msgTelemetryByHop->set_rssi(to_string(netPacket->getMsgTelemetry().msgTelemetryByHop[i].rssi));
+    }
+
+    contractIn_t * contractIn = new contractIn_t;
+    contractIn->set_contractinpacket(contractIn_t::TELEMETRY);
+    contractIn->set_allocated_msgtelemetry(msgTelemetry);
+	contractIn->set_userid(1);
+	contractIn->set_relayid(1);
+
+	// contractIn_t contractIn;
+	// contractIn.set_userid(1);
+	// contractIn.set_relayid(1);
+	// contractIn.set_contractinpacket(contractIn_t::TELEMETRY);
+
+	// contractIn_t::Telemetry msgTelemetry = contractIn.msgtelemetry();
+	// msgTelemetry.set_source(netPacket->getMsgTelemetry().source);
+	// msgTelemetry.set_destination(netPacket->getMsgTelemetry().destination);
+	// msgTelemetry.set_messagetype(1);
+	// msgTelemetry.set_size(1);
+	// //msgTelemetry.set_messagetype(netPacket->getMsgTelemetry().messageType);
+	// //msgTelemetry.set_size(netPacket->getMsgTelemetry().size);
+
+	//cout << "source (pkt) -> " 		<< netPacket->getMsgTelemetry().source << endl;
+	//cout << "destination (pkt) -> " << netPacket->getMsgTelemetry().destination << endl;
+	//cout << "messagetype (pkt) -> " << netPacket->getMsgTelemetry().messageType << endl;
+	//cout << "size (pkt) -> " 		<< netPacket->getMsgTelemetry().size << endl;
+
+	//cout << "source (cont) -> "	 		<< contractIn->msgtelemetry().source() << endl;
+	//cout << "destination (cont) -> "	<< contractIn->msgtelemetry().destination() << endl;
+
+    //for (int i = 0; i < contractIn->msgtelemetry().msgtelemetrybyhop_size(); i++) {
+    //	cout << "relayid -> " << contractIn->msgtelemetry().msgtelemetrybyhop(i).relayid() << endl;
+    //	cout << "timereceived -> " << contractIn->msgtelemetry().msgtelemetrybyhop(i).timereceived() << endl;
+    //	cout << "lenqueuemac -> " << contractIn->msgtelemetry().msgtelemetrybyhop(i).lenqueuemac() << endl;
+    //	cout << "lenqueuenet -> " << contractIn->msgtelemetry().msgtelemetrybyhop(i).lenqueuenet() << endl;
+    //	cout << "packetdropmac -> " << contractIn->msgtelemetry().msgtelemetrybyhop(i).packetdropmac() << endl;
+    //	cout << "packetdropnet -> " << contractIn->msgtelemetry().msgtelemetrybyhop(i).packetdropnet() << endl;
+    //	cout << "rssi -> " << contractIn->msgtelemetry().msgtelemetrybyhop(i).rssi() << endl;
+    //}
+
+	toApplication(contractIn);
+
 }
 
 void CNRouting::toApplication(contractIn_t * contractIn, string trace){
