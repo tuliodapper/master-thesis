@@ -8,8 +8,6 @@ import multiprocessing
 from time import localtime, strftime, sleep
 import connection
 
-# toppath = ""
-
 simfile = "sim-config.ini"
 cfgfile = "sim-config.pickle"
 mobfile = "sim-mob.ini"
@@ -19,6 +17,13 @@ dbgfile = "M3WSN-Debug.txt"
 ou1file = "M3WSN-Output.txt"
 ou2file = "output.txt"
 runfile = "run.sh"
+
+def ExecuteAndWait(command):
+	# start omnet simulation
+	process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+	# check end omnet simulation
+	for line in process.stdout:
+		print line
 
 def ExecuteFromConfig(config):
 
@@ -92,9 +97,9 @@ def ExecuteFromConfig(config):
 	elif os.path.isfile(loadpath + msgfile):
 		os.system("cp " + loadpath + msgfile + " " + simpath + msgfile)
 	
-	# storepath = Execute(simpath, rootpath, savepath, config)
+	storepath = Execute(simpath, rootpath, savepath, config)
 
-	return "storepath"
+	return storepath
 
 def Execute(simpath, rootpath, savepath, config):
 
@@ -114,12 +119,7 @@ def Execute(simpath, rootpath, savepath, config):
 		f.write(newText)
 
 	# remove run files
-	if os.path.isfile(simpath + dbgfile):
-		os.system("rm -rf " + simpath + dbgfile);
-	if os.path.isfile(simpath + ou1file):
-		os.system("rm -rf " + simpath + ou1file);
-	if os.path.isfile(simpath + ou2file):
-		os.system("rm -rf " + simpath + ou2file);
+	ExecuteAndWait("cd " + simpath + " && sh clean.sh")
 
 	config2 = {}
 	config2["config"] = config
@@ -129,12 +129,8 @@ def Execute(simpath, rootpath, savepath, config):
 		process2 = multiprocessing.Process(target=connection.ListenMultiple, args=(config,))
 		process2.start()
 
-	# start omnet simulation
-	process = subprocess.Popen("sh " + simpath + "run.sh", shell=True, stdout=subprocess.PIPE)
-
-	# check end omnet simulation
-	for line in process.stdout:
-		print line
+	# remove run files
+	ExecuteAndWait("sh " + simpath + "run.sh")
 
 	if config["name"] == "SDN":
 		# terminate controller process
@@ -143,12 +139,17 @@ def Execute(simpath, rootpath, savepath, config):
 	# create storepath
 	storepath = strftime("%Y-%m-%d-%H-%M-%S", localtime())
 	storepath = savepath + storepath + "/"
+	videopath = storepath + "videoTrace/"
 	if not os.path.exists(storepath):
 		os.mkdir(storepath)
+	if not os.path.exists(videopath):
+		os.mkdir(videopath)
 
 	# copy files to storepath
 	os.system("cp " + simpath + cfgfile + " " + storepath + cfgfile)
 	os.system("cp " + simpath + simfile + " " + storepath + simfile)
+	os.system("cp " + simpath + "rd_* " + videopath)
+	os.system("cp " + simpath + "sd_* " + videopath)
 	if os.path.isfile(simpath + mobfile):
 		os.system("cp " + simpath + mobfile + " " + storepath + mobfile)
 	if os.path.isfile(simpath + msgfile):
