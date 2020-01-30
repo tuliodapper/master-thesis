@@ -38,19 +38,23 @@ void SimMobility::Initialize(int self, string loadPath){
     }
     file.close();
 
-    pos = 0;
+    pos = -1;
 }
 
 
 bool SimMobility::isThereNextMobilityInfo(){
-    return ((mobilities.size()!=0) && (pos <= mobilities.size()-1));
+    return ((mobilities.size()!=0) && ((pos + 1) <= mobilities.size()-1));
 }
 
 mobility_info_t SimMobility::retNextMobilityInfo(){
     if (!(isThereNextMobilityInfo()))
         pos = 0;
     pos = pos + 1;
-    return mobilities.at(pos-1);
+    return mobilities.at(pos);
+}
+
+double SimMobility::getNextMobilityInfoDelay(){
+    return mobilities.at(pos + 1).delay;
 }
 
 SimMessage::SimMessage(){}
@@ -82,25 +86,29 @@ void SimMessage::Initialize(int self, string loadPath){
                 message.byteLength = stoi(str_split.at(4), &sz);
                 message.messageType = stoi(str_split.at(5), &sz);
                 message.idVideo = stoi(str_split.at(6), &sz);
-                // cout << "line=" << str << " => id=" << self << " dest=" << message.destination << endl;
+                cout << "nodeId: " << self << " | delay: " << message.delay << " | destination=" << message.destination << endl;
                 messages.push_back(message);
             }
         }
     }
     file.close();
 
-    pos = 0;
+    pos = -1;
 }
 
 bool SimMessage::isThereNextMessageInfo(){
-    return ((messages.size()!=0) && (pos <= messages.size()-1));
+    return ((messages.size()!=0) && ((pos+1) <= messages.size()-1));
 }
 
 message_info_t SimMessage::retNextMessageInfo(){
     if (!(isThereNextMessageInfo()))
         pos = 0;
     pos = pos + 1;
-    return messages.at(pos-1);
+    return messages.at(pos);
+}
+
+double SimMessage::getNextMessageInfoDelay(){
+    return messages.at(pos + 1).delay;
 }
 
 strings_t split (const string &s, char delim) {

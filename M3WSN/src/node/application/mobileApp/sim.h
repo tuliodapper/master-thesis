@@ -33,6 +33,7 @@ public:
     void Initialize(int self, string loadPath);
     bool isThereNextMobilityInfo();
     mobility_info_t retNextMobilityInfo();
+    double getNextMobilityInfoDelay();
 };
 
 class SimMessage
@@ -45,6 +46,8 @@ public:
     void Initialize(int self, string loadPath);
     bool isThereNextMessageInfo();
     message_info_t retNextMessageInfo();
+    double getNextMessageInfoDelay();
+
 };
 
 strings_t split (const string &s, char delim);
