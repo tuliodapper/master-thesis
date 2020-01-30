@@ -29,6 +29,10 @@ struct NetMacInfoExchange_type {
 // If definining your own routing protocol and need a more specialized packet
 // you have to create one the extends this generic packet.
 
+enum Routing_MessageType{
+	MESSAGE_TYPE_VIDEO			= 0001;
+};
+
 packet RoutingPacket {
 	NetMacInfoExchange_type netMacInfoExchange;
 	double time;
