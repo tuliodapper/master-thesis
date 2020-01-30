@@ -32,7 +32,8 @@ enum RNRoutingTimers {
 	RN_TIMER_KEEP_ALIVE 	= 2,
 	RN_TIMER_PACKETS		= 3,
 	RN_TIMER_STATUS 		= 4,
-	RN_TIMER_TELEMETRY 		= 5
+	RN_TIMER_TELEMETRY 		= 5,
+	RN_TIMER_BEACON			= 6
 };
 
 class RNRouting : public VirtualRouting {
@@ -49,6 +50,7 @@ protected:
 	double 					timeOutNotifyUser;
 	double 					timeOutStatus;
     double                  timeOutTelemetry;
+    double 					timeOutBeacon;
 
 	// Modules
 	VirtualMobilityManager	*mobilityModule;
@@ -58,7 +60,8 @@ protected:
 	ResourceManager 		*energy;
 
 	// Own
-    bool                    sendTelemetry   = false;
+	bool 					sendBeacon 	= false;
+    bool                    sendTelemetry = false;
 	int 					mode = 0;
 	int 					identifier = 0;
 	bool 					sendStatus 	= false;
@@ -110,6 +113,7 @@ protected:
 	void fromMacUpdateRoutingTable(SDNRoutingPacket *);
 	void fromMacUpdateArea(SDNRoutingPacket *);
 	void fromMacAck(SDNRoutingPacket *);
+	void fromMacBeacon(SDNRoutingPacket *);
 
 	void fromApplication();
 	void fromApplicationUpdateRoutingTable(const contract_out::ContractOut_UpdateRoutingTable & UpdateRoutingTable);
@@ -121,6 +125,7 @@ protected:
 	void timerPackets();
 	void timerStatus();
 	void timerTelemetry();
+	void timerBeacon();
 
 };
 

@@ -27,7 +27,8 @@ enum UNRoutingTimers {
 	UN_TIMER_CONNECT 		= 2,
 	UN_TIMER_CHECK 			= 3,
 	UN_TIMER_STATUS 		= 4,
-	UN_TIMER_CLEAN_BUFFER	= 5
+	UN_TIMER_CLEAN_BUFFER	= 5,
+	UN_TIMER_BEACON			= 6
 };
 
 struct routeCInfo{
@@ -66,6 +67,7 @@ class UNRouting : public VirtualRouting {
 	double 					timeOutRefresh;
 	double 					timeOutStatus;
 	double 					timeOutTrace;
+    double 					timeOutBeacon;
 
 	// Modules
 	VirtualMobilityManager	*mobilityModule;
@@ -78,6 +80,7 @@ class UNRouting : public VirtualRouting {
 	int 					identifier = 0;
 	int 					idTransmission = 0;
 	bool 					connected 	= false;
+	bool 					sendBeacon 	= false;
 	bool 					sendStatus 	= false;
 	vector <pktList> 		buffer;
 	vector <routeCInfo> 	route;
@@ -90,7 +93,6 @@ class UNRouting : public VirtualRouting {
 	void timerFiredCallback(int);
 	void multipleTimerFiredCallback(int, int);
 
-	double getRandomDelay();
 	location_s getCurrentLocation();
 	double getResidualEnergy();
 	void sendPacket(int SDNRoutingPacketKind);
@@ -107,6 +109,7 @@ class UNRouting : public VirtualRouting {
 	void timerConnect();
 	void timerCheck();
 	void timerStatus();
+	void timerBeacon();
 
 	void addPacketHeader(int SDNRoutingPacketKind, SDNRoutingPacket * netPacket);
 

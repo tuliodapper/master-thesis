@@ -16,6 +16,9 @@ void RNRouting::startup() {
 	timeOutNotifyUser 	= par("TIMEOUT_NOTIFY_USER").doubleValue();
 	timeOutStatus 		= par("TIMEOUT_STATUS").doubleValue();
 	timeOutTelemetry 	= par("TIMEOUT_TELEMETRY").doubleValue();
+	timeOutBeacon		= par("TIMEOUT_BEACON").doubleValue();
+	sendTelemetry 		= par("sendTelemetry").boolValue();
+	sendBeacon 			= par("sendBeacon").boolValue();
 
 	// Who am I
 	self = getParentModule()->getParentModule()->getIndex();
@@ -37,7 +40,12 @@ void RNRouting::startup() {
 	// IGNORED AS THERE IS NO NEED -> NO MOBILITY
 	//setTimer(RN_TIMER_STATUS, timeOutStatus);
 	//setTimer(RN_TIMER_KEEP_ALIVE, intervalCounter);
-	setTimer(RN_TIMER_TELEMETRY, 0);
+	if (sendTelemetry) {
+		setTimer(RN_TIMER_TELEMETRY, 0);
+	}
+	if (sendBeacon) {
+		setTimer(RN_TIMER_BEACON, getRandomDelay());
+	}
 
     newTrace("RNRouting::started up!");
 }
@@ -99,6 +107,10 @@ void RNRouting::fromMacLayer(cPacket *pkt, int srcMacAddress, double RSSI, doubl
 
 				if (users.find(atoi(netPacket->getSourceAddress())) != users.end()) {
 					switch (netPacket->getSDNRoutingPacketKind()) {
+						case SDN_BEACON:{
+							fromMacBeacon(netPacket);
+							break;
+						}
 						case SDN_RESPONSE_KEEP_ALIVE:{
 							readUserStatus(netPacket);
 							break;
@@ -198,6 +210,10 @@ void RNRouting::timerFiredCallback(int index){
             timerTelemetry();
             break;
         }
+        case RN_TIMER_BEACON:{
+            timerBeacon();
+            break;
+        }
 	}
 }
 
@@ -214,6 +230,12 @@ void RNRouting::fromMacData(SDNRoutingPacket * netPacket, double RSSI){
 	}
 	sendPacket(netPacket);
 }
+
+void RNRouting::fromMacBeacon(SDNRoutingPacket * netPacket){
+	netPacket->setDestinationAddress(CONTROLLER_NETWORK_ADDRESS);
+	sendPacket(netPacket);
+}
+
 
 void RNRouting::readUserStatus(SDNRoutingPacket * netPacket){
 	users_i it = users.find(atoi(netPacket->getSourceAddress()));
@@ -385,6 +407,17 @@ void RNRouting::timerTrace(){
 void RNRouting::timerStatus(){
 	sendStatus = true;
 	setTimer(RN_TIMER_STATUS, timeOutStatus);
+}
+
+void RNRouting::timerBeacon(){
+	SDNRoutingPacket *msg = new SDNRoutingPacket("Node is sending an adv msg", NETWORK_LAYER_PACKET);
+	addPacketHeader(SDN_BEACON, msg);
+	msg->setDestinationAddress(CONTROLLER_NETWORK_ADDRESS);
+	SDNBeacon msgBeacon;
+	msgBeacon.status.location = getCurrentLocation();
+	msg->setMsgBeacon(msgBeacon);
+	sendPacket(msg);
+	setTimer(RN_TIMER_BEACON, timeOutBeacon);
 }
 
 void RNRouting::timerKeepAlive(){

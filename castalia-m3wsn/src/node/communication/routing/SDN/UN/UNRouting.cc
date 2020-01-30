@@ -10,6 +10,8 @@ void UNRouting::startup() {
 	timeOutRefresh	= par("TIMEOUT_REFRESH").doubleValue();
 	timeOutStatus	= par("TIMEOUT_STATUS").doubleValue();
 	timeOutTrace	= par("TIMEOUT_TRACE").doubleValue();
+	timeOutBeacon	= par("TIMEOUT_BEACON").doubleValue();
+	sendBeacon 		= par("sendBeacon").boolValue();
 
 	// Who am I
 	self = getParentModule()->getParentModule()->getIndex();
@@ -24,6 +26,10 @@ void UNRouting::startup() {
 	// Set Timers
     // setTimer(UN_TIMER_TRACE, 0);
     setTimer(UN_TIMER_CONNECT, getRandomDelay());
+
+	if (sendBeacon) {
+		setTimer(UN_TIMER_BEACON, getRandomDelay());
+	}
 
     newTrace(std::stringstream() << "UNRouting::started up!");
 }
@@ -136,6 +142,10 @@ void UNRouting::timerFiredCallback(int index){
 			timerStatus();
 			break;
 		}
+        case UN_TIMER_BEACON:{
+            timerBeacon();
+            break;
+        }
 	}
 }
 
@@ -205,6 +215,11 @@ void UNRouting::timerStatus(){
 	setTimer(UN_TIMER_STATUS, timeOutStatus);
 }
 
+void UNRouting::timerBeacon(){
+	sendPacket(SDN_BEACON);
+	setTimer(UN_TIMER_BEACON, timeOutBeacon);
+}
+
 void UNRouting::sendPacket(int SDNRoutingPacketKind){
 	SDNRoutingPacket *msg = new SDNRoutingPacket("Node is sending an adv msg", NETWORK_LAYER_PACKET);
 	// TO DO: Verificar o tamanho do pacote dependendo do tipo.
@@ -221,6 +236,13 @@ void UNRouting::sendPacket(int SDNRoutingPacketKind){
             SDNUserStatus msgUserStatus;
             msgUserStatus.status.location = getCurrentLocation();
             msg->setMsgUserStatus(msgUserStatus);
+            break;
+        }
+        case SDN_BEACON:{
+            // cout << "User Node: if send packet" << endl;
+            SDNBeacon msgBeacon;
+            msgBeacon.status.location = getCurrentLocation();
+            msg->setMsgBeacon(msgBeacon);
             break;
         }
     }
@@ -241,12 +263,6 @@ void UNRouting::addPacketHeader(int SDNRoutingPacketKind, SDNRoutingPacket * net
 	netPacket->setTimeToLive(timeToLive);
 	netPacket->setSDNRoutingPacketKind(SDNRoutingPacketKind);
 	netPacket->setNextHopAddress(BROADCAST_NETWORK_ADDRESS);
-}
-
-double UNRouting::getRandomDelay(){
-	int tmp = rand()%100;
-	double tmpTime = tmp / 100.0;
-	return 0.15 + tmpTime;
 }
 
 location_s UNRouting::getCurrentLocation(){
