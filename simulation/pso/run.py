@@ -10,7 +10,7 @@ import interface
 
 CONST_CONFIG_FILE	= "config.pickle"
 
-simpath = "/home/tulio/Desktop/"
+simpath = "/home/antonio/Desktop/"
 
 if len(sys.argv)>2:
 	cfgpath = sys.argv[2]
