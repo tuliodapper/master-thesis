@@ -10,7 +10,8 @@ import interface
 
 CONST_CONFIG_FILE	= "config.pickle"
 
-simpath = sys.argv[1]
+simpath = "/home/tulio/Desktop/"
+
 if len(sys.argv)>2:
 	cfgpath = sys.argv[2]
 else:
@@ -29,7 +30,7 @@ if cfgpath == "":
 	config["dim"] 		= 200
 	config["dcm"] 		= 55
 	config["density"] 	= [0.7]
-	config["nRU"] 		= [12]
+	config["nRU"] 		= [15]
 	config["w"] 		= [[0.9, 0.4]] # np.arange(0.5, 0.9, 0.1)
 	config["c1"] 		= [1.4962] # np.arange(1.3, 1.7, 0.1)
 	config["c2"] 		= [1.4962] #np.arange(1.3, 1.7, 0.1)
@@ -37,15 +38,26 @@ if cfgpath == "":
 
 	# ################# #
 
-	config["posUN"] 	= []
-	for _density in config["density"]:
-		radius 	= _density*0.5*config["dim"] + np.random.normal(0, 75, config["nUN"])
-		angle 	= np.random.uniform(0,2*math.pi,config["nUN"])
-		_posUN 	= np.multiply(	np.array([radius,radius]).transpose(), 
-								np.array([np.cos(angle), np.sin(angle)]).transpose()) + config["dim"]*0.5
-		_posUN[_posUN > (config["dim"]-1)] = config["dim"]-1
-		_posUN[_posUN < 1] = 1
-		config["posUN"].append(_posUN)
+	# config["posUN"] 	= []
+	# for _density in config["density"]:
+	# 	radius 	= _density*0.5*config["dim"] + np.random.normal(0, 75, config["nUN"])
+	# 	angle 	= np.random.uniform(0,2*math.pi,config["nUN"])
+	# 	_posUN 	= np.multiply(	np.array([radius,radius]).transpose(), 
+	# 							np.array([np.cos(angle), np.sin(angle)]).transpose()) + config["dim"]*0.5
+	# 	_posUN[_posUN > (config["dim"]-1)] = config["dim"]-1
+	# 	_posUN[_posUN < 1] = 1
+	# 	config["posUN"].append(_posUN)
+
+	config["posUN"]	= 	[np.array(	[[0,	0	], # 16
+									 [0,	75	], # 17
+									 [0,	180	], # 18
+									 [95,   170 ], # 19
+									 [85, 	0	], # 20
+									 [160, 	0	], # 21
+									 [180, 	195	], # 22
+									 [180, 	95	], # 23
+									 ])]
+	config["nUN"] 		= len(config["posUN"])
 
 	# ################# #
 else:
