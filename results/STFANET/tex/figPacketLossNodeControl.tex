@@ -1,0 +1,41 @@
+\begin{figure}[!htb]
+\centering
+\caption{Packet loss for control packet transmissions by relay and user nodes.}
+\begin{tikzpicture}
+\begin{axis}[   ymin=4,
+                ybar=0pt, 
+                ylabel={Rate [\%]},
+                xlabel={Number of Relay Nodes},
+                enlargelimits=0.15, % space between Number of Nodes (x)
+                xtick=data,
+                legend image code/.code={%
+                    \draw[#1, draw=black] (0cm,-0.05cm) rectangle (0.4cm,0.1cm);
+                },  
+                legend style={
+                    draw=black, % ?
+                    text depth=0pt,
+                    anchor=center,
+                    at={(0.5,1)}, % space between legend and x-axis
+                    legend columns=-1,
+                    /tikz/every even column/.append style={column sep=0.5cm},
+                },]
+\addplot    +[  ybar,
+                draw = black,
+                fill = dark-gray,
+                error bars/.cd,
+                y dir=both,
+                y explicit] plot
+            table [x=NumberOfNodes, y=Mean, y error=Interval, col sep=comma] {results/STFANET/csv/sim-csv-listGoodputControlIndep.csv};
+\addplot    +[  ybar,
+                draw = black,
+                fill = light-gray,
+                error bars/.cd,
+                y dir=both,
+                y explicit] plot
+            table [x=NumberOfNodes, y=Mean, y error=Interval, col sep=comma] {results/STFANET/csv/sim-csv-listGoodputControlRelay.csv};
+\legend{User Nodes, Relay Nodes}
+\end{axis}
+\end{tikzpicture}
+\imagesource{\thisauthor}
+\label{figPacketLossNodeControl}
+\end{figure}

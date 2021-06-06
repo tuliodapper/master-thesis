@@ -1,0 +1,143 @@
+\begin{figure}[!htb]
+\centering
+\caption{Latency for data packet transmissions and number of hops.}
+\begin{tikzpicture}
+    \begin{axis}[
+        ylabel={Time [ms]},
+        xlabel={Number of Relay Nodes},
+        % (adjusting the `ymin' value is just to make it look a little bit better)
+        ymin=0,
+        % ymax=1e6,
+        % there should be no gap between the bars in one group
+        ybar=0pt,
+        % use data from the table for the xticklabels
+        xtick=data,
+        xticklabels from table={\simcsvdicLatencyData}{NumberOfNodes},
+        % to start the bars from the bottom edge of the plot
+        % (otherwise they would start from 10^0
+        %  borrowed from <http://tex.stackexchange.com/a/86688/95441)
+        % log origin=infty,
+        % adjust the size of the bars so they don't overlap
+        % (you can play with the numerator to change the gap between the groups)
+        bar width=0.18,
+        % enlarge the x limits so all of the bars are shown
+        % (play with the value to adjust the gap on the sides of the plot)
+        enlarge x limits={abs=0.6},
+        legend image code/.code={%
+            \draw[#1, draw=black] (0cm,-0.05cm) rectangle (0.4cm,0.1cm);
+        },  
+        legend style={
+            draw=black, % ?
+            text depth=0pt,
+            at={(0.5,1.0)},
+            anchor=center,
+            legend columns=-1,
+            /tikz/every even column/.append style={column sep=0.5cm},
+        },]
+        % % add `nodes near coords'
+        % nodes near coords={
+        %     % because internally PGFPlots works with floating point numbers, we
+        %     % change them to fixed point numbers
+        %     \pgfkeys{
+        %         /pgf/fpu=true,
+        %         /pgf/fpu/output format=fixed,
+        %     }%
+        %     % check if numbers are greater than 1000 and if so, divide them by
+        %     % 1000 to convert them from ms to s scale
+        %     \pgfmathparse{
+        %         ifthenelse(
+        %             \pgfplotspointmeta < 1000,
+        %             \pgfplotspointmeta,
+        %             \pgfplotspointmeta/1000
+        %         )
+        %     }%
+        %     % to now decide which of the two cases we have, we compare the
+        %     % point meta value, but because `\ifnum' compares integers, we first
+        %     % have to convert the fixed number to an integer
+        %         \pgfmathtruncatemacro{\Y}{\pgfplotspointmeta}%
+        %     \ifnum\Y<1000
+        %         \pgfmathprintnumber{\pgfmathresult}\,ms
+        %     \else
+        %         \pgfmathprintnumber{\pgfmathresult}\,s
+        %     \fi
+        % },
+        % % set the style of the `nodes near coords'
+        % nodes near coords style={
+        %     font=\tiny,
+        %     rotate=90,
+        %     anchor=west,
+        % },
+        % % as basis for the `nodes near coords' use the raw y values
+        % point meta=rawy,
+        ]
+        % add the data rows
+        \foreach \i in {1,...,4}{
+            \if\i1
+                \addplot    +[  ybar,
+                                draw=black,
+                                fill=white,
+                                error bars/.cd,
+                                y dir=both,
+                                y explicit
+                            ] plot
+                            table [
+                                x expr=\coordindex,
+                                y index=1,
+                                y error index=2,
+                                col sep=comma,
+                            ] {\simcsvdicLatencyData};
+            \fi
+            \if\i2
+                \addplot    +[  ybar,
+                                draw=black,
+                                fill=light-gray,
+                                error bars/.cd,
+                                y dir=both,
+                                y explicit
+                            ] plot
+                            table [
+                                x expr=\coordindex,
+                                y index=3,
+                                y error index=4,
+                                col sep=comma,
+                            ] {\simcsvdicLatencyData};
+            \fi
+            \if\i3
+                \addplot    +[  ybar,
+                                draw=black,
+                                fill=dark-gray,
+                                error bars/.cd,
+                                y dir=both,
+                                y explicit
+                            ] plot
+                            table [
+                                x expr=\coordindex,
+                                y index=5,
+                                y error index=6,
+                                col sep=comma,
+                            ] {\simcsvdicLatencyData};
+            \fi
+            \if\i4
+                \addplot    +[  ybar,
+                                draw=black,
+                                fill=black,
+                                error bars/.cd,
+                                y dir=both,
+                                y explicit
+                            ] plot
+                            table [
+                                x expr=\coordindex,
+                                y index=7,
+                                y error index=8,
+                                col sep=comma,
+                            ] {\simcsvdicLatencyData};
+            \fi
+            
+            % add the legend entry
+            \addlegendentryexpanded{\i};
+        }
+\end{axis}
+\end{tikzpicture}
+\imagesource{\thisauthor}
+\label{figLatencyHopsData}
+\end{figure}

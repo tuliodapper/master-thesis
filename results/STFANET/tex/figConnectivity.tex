@@ -1,0 +1,23 @@
+\begin{figure}[!htb]
+\centering
+\caption{Connected period ratio.}
+\begin{tikzpicture}
+\begin{axis}[   ybar,
+                enlarge x limits={abs=2.2},
+                bar width=1.5,
+				xlabel={Number of Relay Nodes},
+                ylabel={Rate [\%]},
+                ymin=0,
+                xtick distance=3]
+\addplot    +[  ybar,
+                draw = black,
+                fill = light-gray,
+                error bars/.cd,
+                y dir=both,
+                y explicit] plot
+            table [x=NumberOfNodes, y=Mean, y error=Interval, col sep=comma] {results/STFANET/csv/sim-csv-listTimeRateConnected.csv};
+\end{axis}
+\end{tikzpicture}
+\imagesource{\thisauthor}
+\label{figConnectivity}
+\end{figure}
